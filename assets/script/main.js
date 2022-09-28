@@ -1,6 +1,12 @@
 // CREDIT ALL API's
 
 // expected input : YOUR_NAME, COLOR ( drop menu initially, updated to new tech color picker  ) 
+// ^^^ check edgecases on invalid name input
+
+// initial object 
+// {
+//     name : user_name
+// }
 
 // get nationality, based on name : https://nationalize.io/ ( save all country id's and probablities )
 // save highest probablity of nationality as main nationality
@@ -25,3 +31,10 @@
 //     breed_name : cat_breed,
 //     ref : cat_obj,
 //  }
+
+
+// IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
+var cardData = {
+    name : "gary",
+    nat : "US",
+}
