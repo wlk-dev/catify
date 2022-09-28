@@ -37,16 +37,27 @@
 // TODO: add getter functions to retrieve data
 var cardData = {
     name : "gary",
-    nat : "EG",
+    nat : "US",
     // function : getCatImgURL instead
 }
 
-function pipeCatAPI ( cardData ) { // this function is in working order for now
-    $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
-       let ourBreed = breedData[cardData.nat][0]; // make this a random choice if more than one choice is available
-       cardData.cat_img_meta = ourBreed.image
-    });
-
-    console.log(cardData)
+function getRandomChoice( array ) {
+    return array[ Math.floor(Math.random() * array.length) ];
 }
-// pipeCatAPI( cardData ); TODO: we need to be sure that we are requesting data that exists in our dataset and if doesnt it needs to default( preferably a random default if possible )
+
+function getValidEntry ( entry, entries ) {
+    if ( entries.includes(entry) ) {
+        return entry;
+    }
+    return getRandomChoice(entries)
+}
+
+function addCatData ( cardData ) {
+    $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
+       let catBreed = getRandomChoice( breedData[ getValidEntry(cardData.nat, breedData.all_codes) ] );
+       cardData.cat_img_url = catBreed.image.url;
+       cardData.cat_breed = catBreed.name;
+       cardData.cat_ref = catBreed;
+    });
+    return cardData;
+}
