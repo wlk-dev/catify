@@ -22,7 +22,7 @@ footer {
   justify-content: center;
   position: fixed;
   top: 300px;
-  right: 100px;
+  right: 50px;
   
   
 }
@@ -32,4 +32,9 @@ footer {
   height:auto;
   
 }
+#submit-user-name{
+  font-family: "Pacifico";
+  color: black;
+}
+
 
