@@ -35,27 +35,71 @@
 
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 var cardData = {
-    name : "gary",
-    nat : "US",
+  name: "gary",
+  nat: "",
 }
 
 
 
-//Api for age -agify.io
-function getApiAgify(event) {
-    var name= 'gary'
-    var requestUrl = `https://api.agify.io?name=${name}`;
-  
 
-  
-    fetch(requestUrl)
+//Api for age -agify.io
+function getApiAgify(cardData) {
+
+  var requestUrl = `https://api.agify.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data)
+      // console.log(data.age)
+      cardData.age = data.age
+    })
+};
+
+//Api for Nationality -nationalize.io
+function getApiNationalize(cardData) {
+
+  var requestUrl = `https://api.nationalize.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
 
-      console.log(data)
-    } )
-} ;
+      // console.log(data)
+      // console.log(data.country[0].country_id)
+      cardData.nat = data.country[0].country_id
+      cardData.all_nats = data.country
 
-getApiAgify()
+
+     
+    })
+};
+
+//Api for Gender -genderize.io/
+function getApiGenderize(cardData) {
+
+  var requestUrl = `https://api.genderize.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      // console.log(data.gender)
+      cardData.gender = data.gender
+
+    })
+};
+
+
+getApiAgify(cardData);
+getApiNationalize(cardData);
+getApiGenderize(cardData);
+
+console.log(cardData);
+
