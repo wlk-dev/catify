@@ -36,22 +36,29 @@
 
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
-// Listeners
-var themeColor = $("#themeColor")
+//Global Variables:
 
-// themeColor.style.color = "purple"
-
-themeColor.css({"color":"green"});
-// $("#themeColor").css("b", "purple")
-
-// const themeColor = document.getElementsByClassName("#themeColor")
-// themeColor.setAttribute("style", "background-color: purple;")
+var cardData = {
+  name : "gary",
+  cat_id : "hbro"
+}
 
 
 
+//Theme color pallet
 document.addEventListener('coloris:pick', event => {
     console.log('New color', event.detail.color);
     
+    //themeColor class(font, welcome)
+    let themeColor = $(".themeColor")
+    themeColor.css("color", event.detail.color);
+    //button background-color
+    $("#submit-user-name").css("background-color", event.detail.color)
+
+
+    cardData.card_color = event.detail.color;
+    console.log(cardData);
+
   });
 
 
