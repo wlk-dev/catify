@@ -1,3 +1,5 @@
+// document.body.style.backgroundImage = "url(./assets/image/pexels-karina-badura-6982650.jpg)"
+
 // CREDIT ALL API's
 var cardData = {
   name: "gary",
