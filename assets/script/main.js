@@ -25,9 +25,6 @@ catifyBtn.on("click", function (event) {
 })
 
 
-// lowercase .toLowerCase() 
-
-
 
 
 
