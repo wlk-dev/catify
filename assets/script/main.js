@@ -48,7 +48,6 @@ function getRandomChoice( array ) {
 
 function getValidEntry ( entry, entries ) {
     if ( entries.includes(entry) ) {
-        console.log(entry)
         return entry;
     }
     return getRandomChoice(entries)
@@ -114,11 +113,18 @@ function getApiGenderize(cardData) {
 
 
 // General API flow, encapsulate into flow function
+// TODO: add a delay between each API call so we can ensure that the object state has been resolved
 getApiNationalize(cardData);
 getApiCat(cardData)
-getApiFlag(cardData)
 getApiAgify(cardData);
 getApiGenderize(cardData);
+getApiFlag(cardData)
 
-console.log(cardData);
+// setTimeout(function()
+//   {
+//       var a = cardData.age;
+//       console.log(a)
+
+//   },
+// 100);
 
