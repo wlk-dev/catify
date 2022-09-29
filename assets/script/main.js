@@ -40,6 +40,7 @@
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
+    cat_id : "hbro"
   }
   event.preventDefault();
 
@@ -54,6 +55,20 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
+function getCatObj (cardData, breeds) {
+  let nat = cardData.nat;
+  let catID = !!cardData.cat_id ? cardData.cat_id : "";
+  if ( catID ) {
+    for ( const idx in breeds[nat] ) {
+      if ( breeds[nat][idx].id === catID ) {
+        return breeds[nat][idx];
+      }
+    }
+    console.warn("Could not find target_breed of ", catID, " randomly choosing...")
+  }
+  return getRandomChoice( breeds[nat] );
+}
+
 function getRandomChoice(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
@@ -73,9 +88,10 @@ function onlyLetters(str) {
 function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
     let nat = getValidEntry(cardData.nat, breedData.all_codes)
-    let catBreed = getRandomChoice(breedData[nat]);
+    let catBreed = getCatObj( cardData, breedData );
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
+    cardData.cat_id = catBreed.id
     cardData.cat_ref = catBreed;
     cardData.nat = nat;
   });
@@ -141,6 +157,7 @@ function initIndex( cardData ) {
       currentAPI( cardData );
     }
 
+    console.log(cardData)
     // Have exit point inside of Timeout
   }, 500 )
 
