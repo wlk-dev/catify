@@ -1,33 +1,9 @@
 // document.body.style.backgroundImage = "url(./assets/image/pexels-karina-badura-6982650.jpg)"
 
 // CREDIT ALL API's
-var cardData = {
-  name: "gary",
-  nat: "",
-}
 
 // expected input : YOUR_NAME, COLOR ( drop menu initially, updated to new tech color picker  ) 
 // ^^^ check edgecases on invalid name input
-var username = $('#user-name-input')
-var catifyBtn = $('#submit-user-name')
-function onlyLetters(str) {
-  return /^[a-zA-Z]+$/.test(str);
-}
-catifyBtn.on("click", function (event) {
-  console.log(event.target)
-  console.log(username.val().toLowerCase())
-
-
-  if (onlyLetters(username.val())){
-    cardData.name = username.val().toLowerCase()
-    cardData.original_name = username.val()
-  } else {alert ("invalid input, use letters only")}
-  
-  console.log (cardData)
-})
-
-
-
 
 
 
@@ -45,27 +21,37 @@ catifyBtn.on("click", function (event) {
 
 // expected output
 // { 
-//     name : usr_name,
-//     card_color, color,
-//     nat : main_nationality,
-//     all_nats : all_nationalities,
-//     flag : flag_url,
-//     age : age,
-//     gender : gender
-//     cat_img_url : url,
+  //     name : usr_name,
+  //     card_color, color,
+  //     nat : main_nationality,
+  //     all_nats : all_nationalities,
+  //     flag : flag_url,
+  //     age : age,
+  //     gender : gender
+  //     cat_img_url : url,
 //     breed_name : cat_breed,
 //     ref : cat_obj,
 //  }
 
 
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
-// REMOVE: Sample data
-var cardData = {
-    name : "gary",
-    nat : "",
-}
-// TODO: add getter functions to retrieve data
 
+// Listeners
+$('#submit-user-name').on("click", function (event) {
+  var cardData = {
+    name : "",
+  }
+  event.preventDefault();
+
+  var username = $('#user-name-input')
+
+  if (onlyLetters(username.val())){
+    cardData.name = username.val().toLowerCase()
+    cardData.original_name = username.val()
+  } else {alert ("invalid input, use letters only")}
+
+  initIndex( cardData );
+});
 
 // Util functions
 function getRandomChoice(array) {
@@ -74,14 +60,17 @@ function getRandomChoice(array) {
 
 function getValidEntry(entry, entries) {
   if (entries.includes(entry)) {
-    console.log(entry)
     return entry;
   }
   return getRandomChoice(entries)
 }
 
+function onlyLetters(str) {
+  return /^[a-zA-Z]+$/.test(str);
+}
+
 // API functions
-function addCatData(cardData) {
+function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
     let nat = getValidEntry(cardData.nat, breedData.all_codes)
     let catBreed = getRandomChoice(breedData[nat]);
@@ -122,9 +111,6 @@ function getApiNationalize(cardData) {
     .then(function (data) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
-
-
-
     })
 };
 
@@ -142,19 +128,21 @@ function getApiGenderize(cardData) {
 };
 
 
-// General API flow, encapsulate into flow function
-// TODO: add a delay between each API call so we can ensure that the object state has been resolved
-getApiNationalize(cardData);
-getApiCat(cardData)
-getApiAgify(cardData);
-getApiGenderize(cardData);
-getApiFlag(cardData)
+function initIndex( cardData ) {
+  let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
 
-// setTimeout(function()
-//   {
-//       var a = cardData.age;
-//       console.log(a)
+  getApiNationalize( cardData );
 
-//   },
-// 100);
+  setTimeout( () => {
+    console.log("Retrieved nat data") // Wait until we get nat data before we run the other API's
+
+    for ( const idx in apis ) {
+      let currentAPI = apis[idx];
+      currentAPI( cardData );
+    }
+
+    // Have exit point inside of Timeout
+  }, 500 )
+
+}
 
