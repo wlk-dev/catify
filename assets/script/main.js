@@ -55,6 +55,22 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
+
+function getStored (){
+// data to retrive goes here
+  return JSON.parse(localStorage.getItem("stored-objs"))
+}
+
+function setStorage (data){
+// data to store goes here
+localStorage.setItem("stored-objs",JSON.stringify(data))
+}
+
+
+
+
+
+
 function getCatObj (cardData, breeds) {
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
