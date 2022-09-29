@@ -1,14 +1,37 @@
 // document.body.style.backgroundImage = "url(./assets/image/pexels-karina-badura-6982650.jpg)"
 
 // CREDIT ALL API's
+var cardData = {
+  name: "gary",
+  nat: "",
+}
 
 // expected input : YOUR_NAME, COLOR ( drop menu initially, updated to new tech color picker  ) 
 // ^^^ check edgecases on invalid name input
+var username = $('#user-name-input')
+var catifyBtn = $('#submit-user-name')
+function onlyLetters(str) {
+  return /^[a-zA-Z]+$/.test(str);
+}
+catifyBtn.on("click", function (event) {
+  console.log(event.target)
+  console.log(username.val().toLowerCase())
 
-// initial object 
-// {
-//     name : user_name
-// }
+
+  if (onlyLetters(username.val())){
+    cardData.name = username.val().toLowerCase()
+    cardData.original_name = username.val()
+  } else {alert ("invalid input, use letters only")}
+  
+  console.log (cardData)
+})
+
+
+
+
+
+
+
 
 // get nationality, based on name : https://nationalize.io/ ( save all country id's and probablities )
 // save highest probablity of nationality as main nationality
@@ -41,31 +64,33 @@ var cardData = {
     name : "gary",
     nat : "",
 }
+// TODO: add getter functions to retrieve data
 
 
 // Util functions
-function getRandomChoice( array ) {
-    return array[ Math.floor(Math.random() * array.length) ];
+function getRandomChoice(array) {
+  return array[Math.floor(Math.random() * array.length)];
 }
 
-function getValidEntry ( entry, entries ) {
-    if ( entries.includes(entry) ) {
-        return entry;
-    }
-    return getRandomChoice(entries)
+function getValidEntry(entry, entries) {
+  if (entries.includes(entry)) {
+    console.log(entry)
+    return entry;
+  }
+  return getRandomChoice(entries)
 }
 
 // API functions
-function getApiCat ( cardData ) {
-    $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
-        let nat = getValidEntry(cardData.nat, breedData.all_codes)
-        let catBreed = getRandomChoice( breedData[ nat ] );
-        cardData.cat_img_url = catBreed.image.url;
-        cardData.cat_breed = catBreed.name;
-        cardData.cat_ref = catBreed;
-        cardData.nat = nat;
-    });
-    return cardData;
+function addCatData(cardData) {
+  $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
+    let nat = getValidEntry(cardData.nat, breedData.all_codes)
+    let catBreed = getRandomChoice(breedData[nat]);
+    cardData.cat_img_url = catBreed.image.url;
+    cardData.cat_breed = catBreed.name;
+    cardData.cat_ref = catBreed;
+    cardData.nat = nat;
+  });
+  return cardData;
 }
 
 function getApiFlag( cardData, flag_width="w20" ) {
@@ -97,6 +122,9 @@ function getApiNationalize(cardData) {
     .then(function (data) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
+
+
+
     })
 };
 
