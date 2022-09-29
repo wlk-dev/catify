@@ -37,27 +37,33 @@
 // TODO: add getter functions to retrieve data
 var cardData = {
     name : "gary",
-    nat : "US",
-    // function : getCatImgURL instead
+    nat : "22",
 }
 
+
+// Util functions
 function getRandomChoice( array ) {
     return array[ Math.floor(Math.random() * array.length) ];
 }
 
 function getValidEntry ( entry, entries ) {
     if ( entries.includes(entry) ) {
+        console.log(entry)
         return entry;
     }
     return getRandomChoice(entries)
 }
 
+
+// API functions
 function addCatData ( cardData ) {
     $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
-       let catBreed = getRandomChoice( breedData[ getValidEntry(cardData.nat, breedData.all_codes) ] );
-       cardData.cat_img_url = catBreed.image.url;
-       cardData.cat_breed = catBreed.name;
-       cardData.cat_ref = catBreed;
+        let nat = getValidEntry(cardData.nat, breedData.all_codes)
+        let catBreed = getRandomChoice( breedData[ nat ] );
+        cardData.cat_img_url = catBreed.image.url;
+        cardData.cat_breed = catBreed.name;
+        cardData.cat_ref = catBreed;
+        cardData.nat = nat;
     });
     return cardData;
 }
