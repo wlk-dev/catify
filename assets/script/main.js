@@ -59,6 +59,11 @@ catifyBtn.on("click", function (event) {
 
 
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
+// REMOVE: Sample data
+var cardData = {
+    name : "gary",
+    nat : "",
+}
 // TODO: add getter functions to retrieve data
 
 
@@ -75,7 +80,6 @@ function getValidEntry(entry, entries) {
   return getRandomChoice(entries)
 }
 
-
 // API functions
 function addCatData(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
@@ -89,26 +93,26 @@ function addCatData(cardData) {
   return cardData;
 }
 
+function getApiFlag( cardData, flag_width="w20" ) {
+  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat}.png`;
+  return cardData;
+}
 
 //Api for age -agify.io
 function getApiAgify(cardData) {
-
-  var requestUrl = `https://api.agify.io?name=${cardData.name}`;
+  var requestUrl = `https://api.agify.io?name=${cardData.name}&country_id=${cardData.nat}`;
 
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data)
-      // console.log(data.age)
       cardData.age = data.age
     })
 };
 
 //Api for Nationality -nationalize.io
 function getApiNationalize(cardData) {
-
   var requestUrl = `https://api.nationalize.io?name=${cardData.name}`;
 
   fetch(requestUrl)
@@ -116,9 +120,6 @@ function getApiNationalize(cardData) {
       return response.json();
     })
     .then(function (data) {
-
-      // console.log(data)
-      // console.log(data.country[0].country_id)
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
 
@@ -129,7 +130,6 @@ function getApiNationalize(cardData) {
 
 //Api for Gender -genderize.io/
 function getApiGenderize(cardData) {
-
   var requestUrl = `https://api.genderize.io?name=${cardData.name}`;
 
   fetch(requestUrl)
@@ -137,17 +137,24 @@ function getApiGenderize(cardData) {
       return response.json();
     })
     .then(function (data) {
-
-      // console.log(data.gender)
       cardData.gender = data.gender
-
     })
 };
 
 
-getApiAgify(cardData);
+// General API flow, encapsulate into flow function
+// TODO: add a delay between each API call so we can ensure that the object state has been resolved
 getApiNationalize(cardData);
+getApiCat(cardData)
+getApiAgify(cardData);
 getApiGenderize(cardData);
+getApiFlag(cardData)
 
-// console.log(cardData);
+// setTimeout(function()
+//   {
+//       var a = cardData.age;
+//       console.log(a)
+
+//   },
+// 100);
 
