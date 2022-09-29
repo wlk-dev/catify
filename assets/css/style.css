@@ -7,6 +7,19 @@ header{
   color: white;
   
 }
+.ify{
+  
+  color: orange
+}
+
+
+h1{
+  background-color: gray;
+  font-size: 30px;
+  text-align: center;
+  font-family: "Pacifico";
+  color: white;
+}
 
 footer {
   background-color: gray;
@@ -43,7 +56,6 @@ footer {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-image: url("https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/0adc6ef3fff0c7b.png");
   background: pink;
   transition: 0.1s;
   transform: translate(-50%, -50%);
@@ -56,3 +68,4 @@ footer {
 {
   transform: scale(4);
 }
+

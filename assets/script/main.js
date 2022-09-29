@@ -37,6 +37,12 @@
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
 // Listeners
+
+document.addEventListener('coloris:pick', event => {
+    console.log('New color', event.detail.color);
+  });
+
+
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
