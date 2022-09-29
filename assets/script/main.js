@@ -37,9 +37,21 @@
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
 // Listeners
+var themeColor = $("#themeColor")
+
+// themeColor.style.color = "purple"
+
+themeColor.css({"color":"green"});
+// $("#themeColor").css("b", "purple")
+
+// const themeColor = document.getElementsByClassName("#themeColor")
+// themeColor.setAttribute("style", "background-color: purple;")
+
+
 
 document.addEventListener('coloris:pick', event => {
     console.log('New color', event.detail.color);
+    
   });
 
 
