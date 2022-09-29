@@ -37,7 +37,7 @@
 // TODO: add getter functions to retrieve data
 var cardData = {
     name : "gary",
-    nat : "22",
+    nat : "",
 }
 
 
@@ -67,3 +67,66 @@ function addCatData ( cardData ) {
     });
     return cardData;
 }
+
+
+//Api for age -agify.io
+function getApiAgify(cardData) {
+
+  var requestUrl = `https://api.agify.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data)
+      // console.log(data.age)
+      cardData.age = data.age
+    })
+};
+
+//Api for Nationality -nationalize.io
+function getApiNationalize(cardData) {
+
+  var requestUrl = `https://api.nationalize.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      // console.log(data)
+      // console.log(data.country[0].country_id)
+      cardData.nat = data.country[0].country_id
+      cardData.all_nats = data.country
+
+
+     
+    })
+};
+
+//Api for Gender -genderize.io/
+function getApiGenderize(cardData) {
+
+  var requestUrl = `https://api.genderize.io?name=${cardData.name}`;
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      // console.log(data.gender)
+      cardData.gender = data.gender
+
+    })
+};
+
+
+getApiAgify(cardData);
+getApiNationalize(cardData);
+getApiGenderize(cardData);
+
+console.log(cardData);
+
