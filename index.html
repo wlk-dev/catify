@@ -15,17 +15,20 @@
 
 </head>
 <body>
+    
 
-     <header>
-        Catify
-     </header>
-
+     <header class ="themeColor"> <span class="ify">Cat</span>ify </header>
+     
+     <h1>Welcome!!!!</h1>
+<!-- Card guide-->
      <div class="container">
         <main class="row">
+            <p>Enter your name and we'll turn you into a cat!</p>
 
-            <input class ="form-control form-control-lg" type="text" placeholder="Cat got your tongue" id="user-name-input">
+            <input class ="form-control form-control-lg" type="text" placeholder="Your Name" id="user-name-input">
 
-            <input type="text" data-coloris>
+            <input type="text" id= "colorisVal" data-coloris placeholder="Choose A Color">
+           
             
             <!-- <select data-coloris class ="form-control" id ="card-color-dropdown"> -->
                 <!-- <option name="" id="val-1">Red</option>
@@ -33,12 +36,14 @@
                 <option name="" id="val-3">Green</option>
             </select> -->
             <button class ="btn btn-primary btn-lg btn-block" type="submit" id="submit-user-name">Catify</button>
+            <div class="cursor"></div>
 
         </main>
      </div>
      <img class ="resize" src="assets/image/pexels-karina-badura-6982650.jpg" alt="Orange Cat">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
     <script src="assets/script/main.js"></script>
     <script>
         
@@ -46,8 +51,16 @@
             // placeholder()
         })();
     </script>
+    
     <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+    <script>
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) =>{
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        })
+    </script>
 
-    <footer>Project by William Mariam Terek Dong </footer>
+    <footer class ="themeColor">Project by William Mariam Tarek Dong </footer>
 </body>
 </html>
