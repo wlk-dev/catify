@@ -37,4 +37,21 @@ footer {
   color: black;
 }
 
+/* cursor */
+.cursor{
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: pink;
+  transition: 0.1s;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
 
+}
+
+.btn:hover ~ .cursor
+{
+  transform: scale(4);
+}
