@@ -8,26 +8,31 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+
      <header>
-        <img src="" alt="Catify Logo">
+        Catify
      </header>
 
      <div class="container">
         <main class="row">
 
-            <input type="text" id="user-name-input">
-            <button id="submit-user-name">Catify</button>
-            <select id="card-color-dropdown">
+            <input class ="form-control form-control-lg" type="text" placeholder="Cat got your tongue" id="user-name-input">
+            
+            <select class ="form-control" id ="card-color-dropdown">
                 <option name="" id="val-1">Red</option>
                 <option name="" id="val-2">Blue</option>
                 <option name="" id="val-3">Green</option>
             </select>
+            <button class ="btn btn-primary btn-lg btn-block" type="submit" id="submit-user-name">Catify</button>
 
         </main>
      </div>
-
+     <img class ="resize" src="assets/image/pexels-karina-badura-6982650.jpg" alt="Orange Cat">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/script/main.js"></script>
@@ -36,5 +41,7 @@
             // placeholder();
         })();
     </script>
+
+    <footer>Project by William Mariam Terek Dong </footer>
 </body>
 </html>

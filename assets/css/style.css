@@ -1,0 +1,35 @@
+header{
+  background-color: gray;
+  font-size: 100px;
+  text-align: center;
+  padding: 15px;
+  font-family: "Pacifico";
+  color: white;
+  
+}
+
+footer {
+  background-color: gray;
+  font-size: 50px;
+  text-align: center;
+  padding: 15px;
+}
+
+.container{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 300px;
+  right: 100px;
+  
+  
+}
+
+.resize{
+  width: 1000px;
+  height:auto;
+  
+}
+
