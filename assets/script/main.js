@@ -34,12 +34,39 @@
 
 
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
+// TODO: add getter functions to retrieve data
 var cardData = {
-  name: "gary",
-  nat: "",
+    name : "gary",
+    nat : "",
 }
 
 
+// Util functions
+function getRandomChoice( array ) {
+    return array[ Math.floor(Math.random() * array.length) ];
+}
+
+function getValidEntry ( entry, entries ) {
+    if ( entries.includes(entry) ) {
+        console.log(entry)
+        return entry;
+    }
+    return getRandomChoice(entries)
+}
+
+
+// API functions
+function addCatData ( cardData ) {
+    $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
+        let nat = getValidEntry(cardData.nat, breedData.all_codes)
+        let catBreed = getRandomChoice( breedData[ nat ] );
+        cardData.cat_img_url = catBreed.image.url;
+        cardData.cat_breed = catBreed.name;
+        cardData.cat_ref = catBreed;
+        cardData.nat = nat;
+    });
+    return cardData;
+}
 
 
 //Api for age -agify.io
