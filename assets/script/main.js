@@ -65,7 +65,7 @@ document.addEventListener('coloris:pick', event => {
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
-    cat_id : "hbro"
+    cat_id : "zzz"
   }
   event.preventDefault();
 
@@ -97,6 +97,7 @@ localStorage.setItem("stored-objs",JSON.stringify(data))
 
 
 function getCatObj (cardData, breeds) {
+  console.log("Retrieving cat object...", cardData.nat, breeds.KR)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
   if ( catID ) {
@@ -111,10 +112,12 @@ function getCatObj (cardData, breeds) {
 }
 
 function getRandomChoice(array) {
+  console.log("Choosing random value from array : ", array)
   return array[Math.floor(Math.random() * array.length)];
 }
 
 function getValidEntry(entry, entries) {
+  console.log(`Validating entry of ${entry} from entries : ${entries} result : ${entries.includes(entry)}`)
   if (entries.includes(entry)) {
     return entry;
   }
@@ -128,13 +131,12 @@ function onlyLetters(str) {
 // API functions
 function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
-    let nat = getValidEntry(cardData.nat, breedData.all_codes)
+    cardData.nat = getValidEntry(cardData.nat, breedData.all_codes) // Validate our NAT with available NATs
     let catBreed = getCatObj( cardData, breedData );
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
     cardData.cat_id = catBreed.id
     cardData.cat_ref = catBreed;
-    cardData.nat = nat;
   });
   return cardData;
 }
@@ -191,7 +193,12 @@ function initIndex( cardData ) {
   getApiNationalize( cardData );
 
   setTimeout( () => {
-    console.log("Retrieved nat data") // Wait until we get nat data before we run the other API's
+    console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
+
+    if (!cardData.nat) {
+      console.warn( "Most likely failed to retrieve nat data in time...\nDefaulting to US" )
+      cardData.nat = "US"
+    }
 
     for ( const idx in apis ) {
       let currentAPI = apis[idx];
