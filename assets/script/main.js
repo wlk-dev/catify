@@ -1,3 +1,5 @@
+// document.body.style.backgroundImage = "url(./assets/image/pexels-karina-badura-6982650.jpg)"
+
 // CREDIT ALL API's
 
 // expected input : YOUR_NAME, COLOR ( drop menu initially, updated to new tech color picker  ) 

@@ -1,0 +1,40 @@
+header{
+  background-color: gray;
+  font-size: 100px;
+  text-align: center;
+  padding: 15px;
+  font-family: "Pacifico";
+  color: white;
+  
+}
+
+footer {
+  background-color: gray;
+  font-size: 25px;
+  text-align: center;
+  padding: 15px;
+}
+
+.container{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 300px;
+  right: 50px;
+  
+  
+}
+
+.resize{
+  width: 1000px;
+  height:auto;
+  
+}
+#submit-user-name{
+  font-family: "Pacifico";
+  color: black;
+}
+
+
