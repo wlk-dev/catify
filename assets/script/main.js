@@ -81,21 +81,21 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
-
 function getStored (){
-// data to retrive goes here
+  // data to retrive goes here
   return JSON.parse(localStorage.getItem("stored-objs"))
 }
 
 function setStorage (data){
-// data to store goes here
-localStorage.setItem("stored-objs",JSON.stringify(data))
+  // data to store goes here
+  localStorage.setItem("stored-objs",JSON.stringify(data))
 }
 
-
-
-
-
+function updateStorage ( cardData ) {
+  let storedData = getStored() || [];
+  storedData.push( {name : cardData.original_name, cat_id : cardData.cat_id} )
+  setStorage( storedData )
+}
 
 function getCatObj (cardData, breeds) {
   console.log("Retrieving cat object...", cardData.nat)
@@ -208,6 +208,7 @@ function catify( cardData, callback ) {
 
     setTimeout( () => {
       console.log("Resolved data...")
+      updateStorage( cardData );
       callback( cardData );
     }, 100 );
 
