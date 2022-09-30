@@ -51,6 +51,7 @@ document.addEventListener('coloris:pick', event => {
     setThemeColor(event.detail.color)
     //button background-color
     $("#submit-user-name").css("background-color", event.detail.color)
+
   });
 
 

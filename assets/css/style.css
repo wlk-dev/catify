@@ -121,7 +121,7 @@ footer {
 
 #submit-user-name{
   font-family: "Pacifico";
-  color: white;
+  color: black;
   padding: 10px;
   margin: 5px;
 
@@ -172,7 +172,7 @@ footer {
   position: absolute;
   border-radius: 5px;
   height: 100%;
-  background: orange; 
+  background: limegreen;
   
 }
 
