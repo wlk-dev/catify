@@ -82,7 +82,7 @@ $('#submit-user-name').on("click", function (event) {
 // Util functions
 function setThemeColor ( color ) {
   let themeColor = $(".themeColor")
-  themeColor.css("background-color", color);
+  themeColor.css("color", color);
 }
 
 function getStored (){
