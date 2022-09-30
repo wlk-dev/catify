@@ -1,13 +1,9 @@
 header{
-  background-color: gray;
-  font-size: 100px;
+  background: rgb(0, 0, 0); 
   text-align: center;
-  padding: 15px;
-  font-family: "Pacifico";
-  color: white;
-  
-  
+  padding: 20px;
 }
+
 .ify{
   
   color: orange
@@ -20,7 +16,75 @@ main{
 
 .catifyText {
   -webkit-text-stroke: 1px black;
+  color: #fff;
+  /* text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,   
+    0 0 102px #0fa,
+    0 0 151px #0fa;
+ */
 }
+
+/* text glow */
+
+.txt{
+  font-size: 100px;
+  font-family: "Pacifico";
+  color: white;
+  background: black;
+  width: 113%;
+  height: 113%;
+  padding: 20px;
+  
+}
+
+.txt::before{
+  content:'Catify';
+  position:absolute;
+  mix-blend-mode: difference;
+  filter:blur(3px);
+}
+
+
+.neon-wrapper{
+  display:inline-flex;
+  filter: brightness(200%);
+  overflow: hidden;
+}
+
+.gradient{
+  background:linear-gradient(125.5830067220054deg, rgba(224, 201, 20,1) 6.7673992673992664%,rgba(2, 39, 117,1) 94.3131868131868%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+
+}
+
+.dodge{
+  background: radial-gradient(circle,white,black 35%) center / 25% 25%;
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  right: -50px;
+  bottom: -20px;
+  mix-blend-mode: color-dodge;
+  animation: dodge-area 3s linear infinite;
+}
+
+@keyframes dodge-area{
+  to{
+    transform: translate(50%,50%)
+  }
+}
+
+
 
 
 
@@ -33,14 +97,14 @@ h1{
 }
 
 footer {
-  background-color: gray;
+  background-color: rgb(0, 0, 0);
   font-size: 25px;
   text-align: center;
   padding: 15px;
   font-family: "Pacifico";
   color: white;
   margin-top: 1%;
--webkit-text-stroke: 0.5px black;
+  -webkit-text-stroke: 0.5px black;
 }
 
 
@@ -112,7 +176,7 @@ footer {
 /* progress bar */
 .progress{
   height: 20px;
-  background: white;
+  background: transparent;
   position: relative;
   border-radius: 5px;
   
