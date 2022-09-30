@@ -76,7 +76,9 @@ $('#submit-user-name').on("click", function (event) {
   const disappear = document.getElementById('disappear')
   disappear.style.display = 'none'
 
-  catify( cardData, console.log );
+  // catify( cardData, nextPage );
+
+  nextPage( cardData );
 });
 
 // Util functions
@@ -191,6 +193,9 @@ function getApiGenderize(cardData) {
     })
 };
 
+function nextPage ( cardData ) {
+  window.open( "result.html?" + new URLSearchParams( cardData ), "_self" )
+}
 
 function catify( cardData, callback ) {
   let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
@@ -213,7 +218,7 @@ function catify( cardData, callback ) {
     setTimeout( () => {
       console.log("Resolved data...")
       updateStorage( cardData );
-      callback( cardData );
+      callback(cardData); // nextPage(cardData)
     }, 100 );
 
   },500)
