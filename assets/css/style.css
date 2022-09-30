@@ -4,10 +4,6 @@ header{
   padding: 5px;
 }
 
-.ify{
-  
-  color: orange
-}
 main{
   border-radius: 5px;
  
@@ -15,7 +11,7 @@ main{
 }
 
 .catifyText {
-  -webkit-text-stroke: 2px rgb(255, 255, 255);
+  -webkit-text-stroke: 2px rgb(51, 51, 51);
 }
 
 /* text glow */
@@ -35,7 +31,7 @@ main{
   content:'Catify';
   position:absolute;
   mix-blend-mode: difference;
-  filter:blur(4px);
+  filter:blur(3px);
 }
 
 
