@@ -12,7 +12,11 @@ header{
   
   color: orange
 }
-
+main{
+  border-radius: 5px;
+ 
+  
+}
 
 h1{
   background-color: gray;
@@ -29,14 +33,17 @@ footer {
   padding: 15px;
 }
 
+
+
 .container{
   height: 300px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;;
   position: fixed;
   top: 300px;
   right: 50px;
+  
   
   
 }
@@ -46,9 +53,31 @@ footer {
   height:auto;
   
 }
+
+.clr-field{
+  margin: 5px;
+}
+
+#user-name-input{
+  margin: 5px;
+}
+
 #submit-user-name{
   font-family: "Pacifico";
   color: black;
+  padding: 10px;
+  margin: 5px;
+
+}
+
+.card{
+  margin: 5px;
+  padding: 10px;
+  opacity: .7;
+}
+
+.card:hover{
+  opacity: 1;
 }
 
 /* cursor */
@@ -57,7 +86,7 @@ footer {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: pink;
+  background: rgb(235, 124, 124);
   transition: 0.1s;
   transform: translate(-50%, -50%);
   pointer-events: none;
