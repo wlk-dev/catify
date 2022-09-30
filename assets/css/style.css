@@ -1,7 +1,7 @@
 header{
   background: rgb(0, 0, 0); 
   text-align: center;
-  padding: 20px;
+  padding: 5px;
 }
 
 .ify{
@@ -32,21 +32,21 @@ main{
 /* text glow */
 
 .txt{
-  font-size: 100px;
+  font-size: 120px;
   font-family: "Pacifico";
-  color: white;
+  color:white;
   background: black;
   width: 113%;
   height: 113%;
   padding: 20px;
-  
+  text-transform: uppercase;
 }
 
 .txt::before{
   content:'Catify';
   position:absolute;
   mix-blend-mode: difference;
-  filter:blur(3px);
+  filter:blur(4px);
 }
 
 
