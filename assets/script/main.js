@@ -38,10 +38,10 @@
 
 //Global Variables:
 
-var cardData = {
-  name : "gary",
-  cat_id : "hbro"
-}
+// var cardData = {
+//   name : "gary",
+//   cat_id : "hbro"
+// }
 
 
 
@@ -56,8 +56,8 @@ document.addEventListener('coloris:pick', event => {
     $("#submit-user-name").css("background-color", event.detail.color)
 
 
-    cardData.card_color = event.detail.color;
-    console.log(cardData);
+    // cardData.card_color = event.detail.color;
+    // console.log(cardData);
 
   });
 
@@ -65,7 +65,7 @@ document.addEventListener('coloris:pick', event => {
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
-    cat_id : "zzz"
+    cat_id : "mala"
   }
   event.preventDefault();
 
@@ -76,28 +76,29 @@ $('#submit-user-name').on("click", function (event) {
     cardData.original_name = username.val()
   } else {alert ("invalid input, use letters only")}
 
-  initIndex( cardData );
+  cardData.card_color = $("#colorisVal").val();
+  catify( cardData, console.log );
 });
 
 // Util functions
-
 function getStored (){
-// data to retrive goes here
+  // data to retrive goes here
   return JSON.parse(localStorage.getItem("stored-objs"))
 }
 
 function setStorage (data){
-// data to store goes here
-localStorage.setItem("stored-objs",JSON.stringify(data))
+  // data to store goes here
+  localStorage.setItem("stored-objs",JSON.stringify(data))
 }
 
-
-
-
-
+function updateStorage ( cardData ) {
+  let storedData = getStored() || [];
+  storedData.push( {name : cardData.original_name, cat_id : cardData.cat_id} )
+  setStorage( storedData )
+}
 
 function getCatObj (cardData, breeds) {
-  console.log("Retrieving cat object...", cardData.nat, breeds.KR)
+  console.log("Retrieving cat object...", cardData.nat)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
   if ( catID ) {
@@ -187,7 +188,7 @@ function getApiGenderize(cardData) {
 };
 
 
-function initIndex( cardData ) {
+function catify( cardData, callback ) {
   let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
 
   getApiNationalize( cardData );
@@ -205,9 +206,13 @@ function initIndex( cardData ) {
       currentAPI( cardData );
     }
 
-    console.log(cardData)
-    // Have exit point inside of Timeout
-  }, 500 )
+    setTimeout( () => {
+      console.log("Resolved data...")
+      updateStorage( cardData );
+      callback( cardData );
+    }, 100 );
+
+  },500)
 
 }
 
