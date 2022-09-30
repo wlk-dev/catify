@@ -39,12 +39,10 @@ footer {
   height: 300px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;;
-  position: fixed;
+  justify-content: center;
+  position: absolute;
   top: 300px;
   right: 50px;
-  
-  
   
 }
 
@@ -97,5 +95,31 @@ footer {
 .btn:hover ~ .cursor
 {
   transform: scale(4);
+}
+/* progress bar */
+.progress{
+  height: 20px;
+  background: white;
+  position: relative;
+  border-radius: 5px;
+  
+}
+
+.progress .progress-bar{
+  position: absolute;
+  border-radius: 5px;
+  height: 100%;
+  background: orange; 
+  
+}
+
+#play-animation {
+  animation: progress-animation 5s forwards;
+}
+
+@keyframes progress-animation{
+  0%{ width: 0%}
+  100% {width: 100%}
+
 }
 

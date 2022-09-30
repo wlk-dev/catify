@@ -77,7 +77,16 @@ $('#submit-user-name').on("click", function (event) {
   } else {alert ("invalid input, use letters only")}
 
   initIndex( cardData );
-});
+
+    const progressBar = document.querySelector('.progress-bar')
+    progressBar.setAttribute('id', 'play-animation')
+
+    const disappear = document.getElementById('disappear')
+    disappear.style.display = 'none'
+    }
+  
+   
+);
 
 // Util functions
 
