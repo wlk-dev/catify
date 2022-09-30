@@ -40,7 +40,7 @@ footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;;
-  position: fixed;
+  position: absolute;
   top: 300px;
   right: 50px;
   
@@ -49,8 +49,8 @@ footer {
 }
 
 .resize{
-  width: 1000px;
-  height:auto;
+  width: 600px;
+  height: 500px;
   
 }
 
@@ -72,13 +72,16 @@ footer {
 
 .card{
   margin: 5px;
-  padding: 10px;
-  opacity: .7;
+  padding: 20px;
+  border: black 3px solid;
+  border-radius: 10%;
+  /* opacity: .7; */
 }
 
-.card:hover{
+
+/* .card:hover{
   opacity: 1;
-}
+} */
 
 /* cursor */
 .cursor{
