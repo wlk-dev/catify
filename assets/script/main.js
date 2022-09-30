@@ -38,10 +38,10 @@
 
 //Global Variables:
 
-var cardData = {
-  name : "gary",
-  cat_id : "hbro"
-}
+// var cardData = {
+//   name : "gary",
+//   cat_id : "hbro"
+// }
 
 
 
@@ -56,8 +56,8 @@ document.addEventListener('coloris:pick', event => {
     $("#submit-user-name").css("background-color", event.detail.color)
 
 
-    cardData.card_color = event.detail.color;
-    console.log(cardData);
+    // cardData.card_color = event.detail.color;
+    // console.log(cardData);
 
   });
 
@@ -65,7 +65,7 @@ document.addEventListener('coloris:pick', event => {
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
-    cat_id : "zzz"
+    cat_id : "mala"
   }
   event.preventDefault();
 
@@ -76,7 +76,8 @@ $('#submit-user-name').on("click", function (event) {
     cardData.original_name = username.val()
   } else {alert ("invalid input, use letters only")}
 
-  initIndex( cardData );
+  cardData.card_color = $("#colorisVal").val();
+  catify( cardData, console.log );
 });
 
 // Util functions
@@ -97,7 +98,7 @@ localStorage.setItem("stored-objs",JSON.stringify(data))
 
 
 function getCatObj (cardData, breeds) {
-  console.log("Retrieving cat object...", cardData.nat, breeds.KR)
+  console.log("Retrieving cat object...", cardData.nat)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
   if ( catID ) {
@@ -187,7 +188,7 @@ function getApiGenderize(cardData) {
 };
 
 
-function initIndex( cardData ) {
+function catify( cardData, callback ) {
   let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
 
   getApiNationalize( cardData );
@@ -205,9 +206,12 @@ function initIndex( cardData ) {
       currentAPI( cardData );
     }
 
-    console.log(cardData)
-    // Have exit point inside of Timeout
-  }, 500 )
+    setTimeout( () => {
+      console.log("Resolved data...")
+      callback( cardData );
+    }, 100 );
+
+  },500)
 
 }
 
