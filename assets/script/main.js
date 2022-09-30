@@ -47,26 +47,18 @@
 
 //Theme color pallet
 document.addEventListener('coloris:pick', event => {
-    console.log('New color', event.detail.color);
-    
     //themeColor class(font, welcome)
-    let themeColor = $(".themeColor")
-    themeColor.css("background-color", event.detail.color);
+    setThemeColor(event.detail.color)
     //button background-color
     $("#submit-user-name").css("background-color", event.detail.color)
-   
-
-    // cardData.card_color = event.detail.color;
-    // console.log(cardData);
-
   });
 
 
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name : "",
-    cat_id : "mala"
   }
+
   event.preventDefault();
 
   var username = $('#user-name-input')
@@ -76,11 +68,23 @@ $('#submit-user-name').on("click", function (event) {
     cardData.original_name = username.val()
   } else {alert ("invalid input, use letters only")}
 
-  cardData.card_color = $("#colorisVal").val();
+  cardData.card_color = $("#colorisVal").val() || "red";
+  setThemeColor(cardData.card_color)
+
+  const progressBar = document.querySelector('.progress-bar')
+  progressBar.setAttribute('id', 'play-animation')
+  const disappear = document.getElementById('disappear')
+  disappear.style.display = 'none'
+
   catify( cardData, console.log );
 });
 
 // Util functions
+function setThemeColor ( color ) {
+  let themeColor = $(".themeColor")
+  themeColor.css("background-color", color);
+}
+
 function getStored (){
   // data to retrive goes here
   return JSON.parse(localStorage.getItem("stored-objs"))
