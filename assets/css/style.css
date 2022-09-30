@@ -39,11 +39,11 @@ footer {
   height: 300px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;;
   position: fixed;
   top: 300px;
   right: 50px;
-  margin: 10px;
+  
   
   
 }
@@ -73,6 +73,11 @@ footer {
 .card{
   margin: 5px;
   padding: 10px;
+  opacity: .7;
+}
+
+.card:hover{
+  opacity: 1;
 }
 
 /* cursor */

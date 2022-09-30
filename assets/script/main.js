@@ -50,7 +50,7 @@ document.addEventListener('coloris:pick', event => {
     console.log('New color', event.detail.color);
     
     //themeColor class(font, welcome)
-    let themeColor = $(".themeColor", "cursor")
+    let themeColor = $(".themeColor")
     themeColor.css("color", event.detail.color);
     //button background-color
     $("#submit-user-name").css("background-color", event.detail.color)
