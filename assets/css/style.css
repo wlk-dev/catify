@@ -18,6 +18,12 @@ main{
   
 }
 
+.catifyText {
+  -webkit-text-stroke: 1px black;
+}
+
+
+
 h1{
   background-color: gray;
   font-size: 30px;
@@ -31,6 +37,9 @@ footer {
   font-size: 25px;
   text-align: center;
   padding: 15px;
+  font-family: "Pacifico";
+  color: white;
+-webkit-text-stroke: 0.5px black;
 }
 
 
@@ -39,18 +48,16 @@ footer {
   height: 300px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;;
-  position: fixed;
+  justify-content: center;
+  position: absolute;
   top: 300px;
   right: 50px;
-  
-  
   
 }
 
 .resize{
-  width: 1000px;
-  height:auto;
+  width: 600px;
+  height: 500px;
   
 }
 
@@ -72,13 +79,16 @@ footer {
 
 .card{
   margin: 5px;
-  padding: 10px;
-  opacity: .7;
+  padding: 20px;
+  border: black 3px solid;
+  border-radius: 10%;
+  /* opacity: .7; */
 }
 
-.card:hover{
+
+/* .card:hover{
   opacity: 1;
-}
+} */
 
 /* cursor */
 .cursor{
@@ -97,5 +107,31 @@ footer {
 .btn:hover ~ .cursor
 {
   transform: scale(4);
+}
+/* progress bar */
+.progress{
+  height: 20px;
+  background: white;
+  position: relative;
+  border-radius: 5px;
+  
+}
+
+.progress .progress-bar{
+  position: absolute;
+  border-radius: 5px;
+  height: 100%;
+  background: orange; 
+  
+}
+
+#play-animation {
+  animation: progress-animation 5s forwards;
+}
+
+@keyframes progress-animation{
+  0%{ width: 0%}
+  100% {width: 100%}
+
 }
 

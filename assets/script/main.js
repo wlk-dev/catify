@@ -51,10 +51,10 @@ document.addEventListener('coloris:pick', event => {
     
     //themeColor class(font, welcome)
     let themeColor = $(".themeColor")
-    themeColor.css("color", event.detail.color);
+    themeColor.css("background-color", event.detail.color);
     //button background-color
     $("#submit-user-name").css("background-color", event.detail.color)
-
+   
 
     // cardData.card_color = event.detail.color;
     // console.log(cardData);
