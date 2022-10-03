@@ -34,8 +34,6 @@ $('#submit-user-name').on("click", function (event) {
   const disappear = document.getElementById('disappear')
   disappear.style.display = 'none'
 
-  // catify( cardData, nextPage );
-
   nextPage( cardData );
 });
 
@@ -45,8 +43,8 @@ function populateMainCard (cardData) {
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
   $("#gender").text("Gender: " + cardData.gender)
-  $("#country-code").text(cardData.nat)
-  $("#flag-img").attr("src", cardData.flag_img_url.toLowerCase())
+  $("#country-code").text(cardData.cat_origin)
+  $("#flag-img").attr("src", cardData.flag_img_url)
   $("#breed-img").css("background-color", cardData.card_color)
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url)
@@ -68,9 +66,9 @@ function setStorage (data){
 }
 
 function updateStorage ( cardData ) {
-  let storedData = getStored() || [];
-  console.log(cardData.original_name, cardData.cat_id, "STORING....")
-  storedData.push( {name : cardData.original_name, cat_id : cardData.cat_id} )
+  let storedData = getStored() || {};
+  console.log(`STORING DATA : key=${cardData.name}`)
+  storedData[cardData.name] = {name : cardData.original_name, cat_id : cardData.cat_id}
   setStorage( storedData )
 }
 
@@ -103,7 +101,7 @@ function getValidEntry(entry, entries) {
 }
 
 function onlyLetters(str) {
-  return /^[a-zA-Z]+$/.test(str);
+  return /^[a-zA-Z]+$/.test(str); // regex fun
 }
 
 // API functions
@@ -111,6 +109,7 @@ function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
     cardData.nat = getValidEntry(cardData.nat, breedData.all_codes) // Validate our NAT with available NATs
     let catBreed = getCatObj( cardData, breedData );
+    cardData.cat_origin = catBreed.origin
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
     cardData.cat_id = catBreed.id
@@ -120,7 +119,11 @@ function getApiCat(cardData) {
 }
 
 function getApiFlag( cardData, flag_width="w20" ) {
+<<<<<<< HEAD
   cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase}.png`;
+=======
+  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
+>>>>>>> main
   return cardData;
 }
 
@@ -188,6 +191,7 @@ function catify( cardData, callback ) {
 
     setTimeout( () => {
       console.log("Resolved data...")
+      console.log(cardData.age)
       updateStorage( cardData );
       callback(cardData); // nextPage(cardData)
     }, 100 );

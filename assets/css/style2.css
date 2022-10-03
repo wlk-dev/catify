@@ -23,8 +23,14 @@ header{
 }
 
 #top-card {
-  width: 300px;
+  width: 400px;
+  padding: .5%;
+  border: 1px solid black;
   margin: 0 auto;
+}
+
+#country-code {
+  margin-right: 1%;
 }
 
 .cardX, .cardY, main {
