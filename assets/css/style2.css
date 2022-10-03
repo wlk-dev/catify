@@ -11,6 +11,9 @@ header{
   background: rgb(0, 0, 0); 
   text-align: center;
   padding: 5px;
+  background-color: black;
+  color: white;
+  margin-bottom: 1%;
 }
 
 .catImg{
@@ -20,8 +23,14 @@ header{
 }
 
 #top-card {
-  width: 300px;
+  width: 400px;
+  padding: .5%;
+  border: 1px solid black;
   margin: 0 auto;
+}
+
+#country-code {
+  margin-right: 1%;
 }
 
 .cardX, .cardY, main {
@@ -59,6 +68,10 @@ main {
   padding-bottom: 20px;
 }
 
+.mySwiper {
+  margin-top: 6%;
+}
+
 footer {
   background-color: rgb(0, 0, 0);
   font-size: 25px;
@@ -66,16 +79,10 @@ footer {
   padding: 15px;
   font-family: "Pacifico";
   color: white;
-  margin-top: 1%;
+  margin-top: 5%;
   -webkit-text-stroke: 0.5px black;
 }
 
-header {
-  background-color: black;
-  color: white;
-  margin-bottom: 1%;
-  /* border: red 20px solid; */
-}
 
 .cardXcontainer {
   text-align: center;
@@ -153,4 +160,24 @@ section .card .image img {
 .userNameCat .catBreed{
   font-size: 15px;
   font-weight: 500;
+}
+
+.card .flags{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+}
+
+
+/* slider Button */
+
+.card-content:hover{
+  cursor: pointer;
+  opacity: .8;
+}
+
+a {
+  text-align: center;
+  margin: 5px;
 }
