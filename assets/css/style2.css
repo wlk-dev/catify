@@ -22,6 +22,11 @@ header{
   
 }
 
+
+.flag {
+  box-shadow: 0 0 5px black;
+}
+
 #top-card {
   width: 400px;
   padding: .5%;
