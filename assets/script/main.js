@@ -45,7 +45,7 @@ function populateMainCard(cardData) {
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
   $("#flag-img").attr("src", cardData.flag_img_url)
-  $("#breed-img").css("background-color", cardData.card_color)
+  // $("#breed-img").css("background-color", white)
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
 }
