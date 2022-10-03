@@ -119,7 +119,11 @@ function getApiCat(cardData) {
 }
 
 function getApiFlag( cardData, flag_width="w20" ) {
+<<<<<<< HEAD
+  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase}.png`;
+=======
   cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
+>>>>>>> main
   return cardData;
 }
 
