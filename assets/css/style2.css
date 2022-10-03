@@ -1,4 +1,24 @@
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+header{
+  background: rgb(0, 0, 0); 
+  text-align: center;
+  padding: 5px;
+}
+
+.catImg{
+  display: flex;
+  justify-content: right;
+  
+}
+
 #top-card {
   width: 300px;
   margin: 0 auto;
@@ -63,4 +83,74 @@ header {
 
 .list-group {
   text-align: left;
+}
+
+/* slider card */
+
+section{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section .card .image{
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  padding: 3px;
+  background: orange;
+}
+
+section .card .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white
+}
+
+.card{
+  position:relative;
+  background: white;
+  border-radius: 20px;
+  margin: 20px 0;
+  width: 280px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  height: 55%;
+  width: 100%;
+  background: orange;
+  border-radius: 20px 20px 0 0;
+}
+
+.card .card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  z-index: 100;
+
+}
+
+.card .userNameCat{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; 
+  color:#333;
+}
+
+.userNameCat .userName{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.userNameCat .catBreed{
+  font-size: 15px;
+  font-weight: 500;
 }

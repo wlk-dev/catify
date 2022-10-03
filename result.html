@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style2.css" />
+
+		  <!-- Link Swiper's CSS -->
+		<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+
 </head>
 
 <body>
@@ -61,38 +68,61 @@
 
             <!-- <div class="col-3"></div> -->
         </main>
-        <aside class="row form-group"></aside>
+	<section>
 
-        <aside class=" row top-buffer form-group">
-            <!-- other cards -->
-            <div class="col-lg">
+		<div class ="swiper mySwiper container">
+			<div class ="swiper-wrapper content">
 
-                <div class="cardY">
-                    <div class="containerX text-center">
-                        <h4><b>John Doe</b></h4>
-                    </div>
-                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="200" height="200">
-                </div>
+				<div class ="swiper-slide card">
+					<div class="card-content">
+						<div class = "image">
+							<img src="./assets/image/image1.jpg" alt="cat paws">
+						</div>
 
-            </div>
+						<div class="userNameCat">
+						<span class="userName">Person Name</span>
+						<span class="catBreed">cat breed</span>
+						</div>
+					</div>
+				</div>
 
-            <!-- <div class="col-1 "></div> -->
+				<div class ="swiper-slide card">
+					<div class="card-content">
+						<div class = "image">
+							<img src="./assets/image/image1.jpg" alt="cat paws">
+						</div>
 
-            <!-- <div class="col-1 "></div> -->
-            <div class="col-4">
-                <div class="cardY">
-                    <div class="containerX text-center">
-                        <h4><b>John Doe</b></h4>
-                    </div>
-                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="200" height="200">
-                </div>
-         
-            </div>
+						<div class="userNameCat">
+						<span class="userName">Person Name</span>
+						<span class="catBreed">cat breed</span>
+						</div>
+					</div>
+				</div>
 
-        </aside>
+				<div class ="swiper-slide card">
+					<div class="card-content">
+						<div class = "image">
+							<img src="./assets/image/image1.jpg" alt="cat paws">
+						</div>
 
-    </div>
+						<div class="userNameCat">
+						<span class="userName">Person Name</span>
+						<span class="catBreed">cat breed</span>
+						</div>
+					</div>
+				</div>
 
+
+			</div>	  
+		</div>
+
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+		
+	</section>
+
+     
 
 
 
@@ -114,6 +144,29 @@
             catify( urlParams, console.log ); // replace console.log with dynamic element creation function
         })();
     </script>
+
+		   <!-- Swiper JS -->
+			 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+			 <!-- Initialize Swiper -->
+			 <script>
+				 var swiper = new Swiper(".mySwiper", {
+					 slidesPerView: 3,
+					 spaceBetween: 30,
+					 slidesPerGroup: 3,
+					 loop: true,
+					 loopFillGroupWithBlank: true,
+					 pagination: {
+						 el: ".swiper-pagination",
+						 clickable: true,
+					 },
+					 navigation: {
+						 nextEl: ".swiper-button-next",
+						 prevEl: ".swiper-button-prev",
+					 },
+				 });
+			 </script>
+	
 </body>
 
 </html>
