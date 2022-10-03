@@ -42,12 +42,12 @@ function populateMainCard(cardData) {
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
-  $("#gender").text("Gender: " + cardData.gender)
+  $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
   $("#flag-img").attr("src", cardData.flag_img_url)
   $("#breed-img").css("background-color", cardData.card_color)
   $("#breed-attr")
-  $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("src", cardData.cat_ref.wikipedia_url)
+  $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
 }
 
 function setThemeColor ( color ) {
@@ -282,7 +282,7 @@ function catify(cardData, callback) {
       },
       "gender": "male",
       "age": 49
-  }
+    }
 
     setTimeout(() => {
       console.log("Resolved data...")
