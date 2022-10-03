@@ -104,7 +104,8 @@ footer {
   justify-content: center;
   position: absolute;
   top: 300px;
-  right: 50px;
+  right: 20%;
+  z-index: 10;
   
 }
 
@@ -249,4 +250,14 @@ footer {
 
 }
 
+@media screen and (max-width: 790px){
+  .header{
+    width:100%;
+  }
+}
 
+@media screen and (min-width: 790px){
+  .header{
+    width: 30%;
+  }
+}
