@@ -18,8 +18,9 @@ main {
 
 .cardY {
   /* Add shadows to create the "card" effect */
-  width: 300px;
+  width: 200px;
   margin: 0 auto;
+ 
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -28,8 +29,9 @@ main {
 }
 
 /* Add some padding inside the card container */
-.containerX {
+.containerX, .cardY img {
   padding: 2px 16px;
+  box-shadow: 0 0 2px black;
 }
 
 .cardImage1 {
