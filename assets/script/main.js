@@ -120,7 +120,7 @@ function getApiCat(cardData) {
 }
 
 function getApiFlag( cardData, flag_width="w20" ) {
-  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat}.png`;
+  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase}.png`;
   return cardData;
 }
 
