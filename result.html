@@ -52,7 +52,7 @@
                 <li class="list-group-item"><span id="country-code">Country</span><img src="" alt="Country Flag" class="flag" id="flag-img" width="20" height="10"></img></li>
                 
                 <li class="list-group-item" id="breed-attr">Attributes</li>
-                <li class="list-group-item"><a href="" id="wiki-link"></a></li>
+                <li class="list-group-item"><a href="" target="_blank" id="wiki-link"></a></li>
             </ul>
 
 
@@ -101,7 +101,7 @@
                 paramsObj[key] = value;
             }
 
-            catify( paramsObj, populateMainCard); // replace console.log with dynamic element creation function
+            catify( paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
         })();
     </script>
 
