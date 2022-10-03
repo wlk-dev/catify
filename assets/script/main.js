@@ -4,27 +4,27 @@
 
 //Theme color pallet
 document.addEventListener('coloris:pick', event => {
-    //themeColor class(font, welcome)
-    setThemeColor(event.detail.color)
-    //button background-color
-    $("#submit-user-name").css("background-color", event.detail.color)
+  //themeColor class(font, welcome)
+  setThemeColor(event.detail.color)
+  //button background-color
+  $("#submit-user-name").css("background-color", event.detail.color)
 
-  });
+});
 
 
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
-    name : "",
+    name: "",
   }
 
   event.preventDefault();
 
   var username = $('#user-name-input')
 
-  if (onlyLetters(username.val())){
+  if (onlyLetters(username.val())) {
     cardData.name = username.val().toLowerCase()
     cardData.original_name = username.val()
-  } else {alert ("invalid input, use letters only")}
+  } else { alert("invalid input, use letters only") }
 
   cardData.card_color = $("#colorisVal").val() || "red";
   setThemeColor(cardData.card_color)
@@ -34,11 +34,11 @@ $('#submit-user-name').on("click", function (event) {
   const disappear = document.getElementById('disappear')
   disappear.style.display = 'none'
 
-  nextPage( cardData );
+  nextPage(cardData);
 });
 
 // Util functions
-function populateMainCard (cardData) {
+function populateMainCard(cardData) {
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
@@ -55,14 +55,14 @@ function setThemeColor ( color ) {
   themeColor.css("color", color);
 }
 
-function getStored (){
+function getStored() {
   // data to retrive goes here
   return JSON.parse(localStorage.getItem("stored-objs"))
 }
 
-function setStorage (data){
+function setStorage(data) {
   // data to store goes here
-  localStorage.setItem("stored-objs",JSON.stringify(data))
+  localStorage.setItem("stored-objs", JSON.stringify(data))
 }
 
 function updateStorage ( cardData ) {
@@ -72,19 +72,19 @@ function updateStorage ( cardData ) {
   setStorage( storedData )
 }
 
-function getCatObj (cardData, breeds) {
+function getCatObj(cardData, breeds) {
   console.log("Retrieving cat object...", cardData.nat)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
-  if ( catID ) {
-    for ( const idx in breeds[nat] ) {
-      if ( breeds[nat][idx].id === catID ) {
+  if (catID) {
+    for (const idx in breeds[nat]) {
+      if (breeds[nat][idx].id === catID) {
         return breeds[nat][idx];
       }
     }
     console.warn("Could not find target_breed of ", catID, " randomly choosing...")
   }
-  return getRandomChoice( breeds[nat] );
+  return getRandomChoice(breeds[nat]);
 }
 
 function getRandomChoice(array) {
@@ -134,6 +134,10 @@ function getApiAgify(cardData) {
     .then(function (data) {
       cardData.age = data.age
     })
+    .catch(function (error){
+      cardData.age = 30
+      console.log (error)
+    })
 };
 
 //Api for Nationality -nationalize.io
@@ -148,6 +152,13 @@ function getApiNationalize(cardData) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
     })
+    .catch (function (error){
+      cardData.nat= ""
+      console.log(error)
+    })
+
+    
+  
 };
 
 //Api for Gender -genderize.io/
@@ -161,22 +172,27 @@ function getApiGenderize(cardData) {
     .then(function (data) {
       cardData.gender = data.gender
     })
-};
+    .catch (function (error){
+      cardData.gender = getRandomChoice(["male", "female"])
+      console.log (error)
+    }) 
 
-function nextPage ( cardData ) {
-  window.open( "result.html?" + new URLSearchParams( cardData ), "_self" )
 }
 
-function catify( cardData, callback ) {
-  let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
+function nextPage(cardData) {
+  window.open("result.html?" + new URLSearchParams(cardData), "_self")
+}
+
+function catify(cardData, callback) {
+  let apis = [getApiCat, getApiAgify, getApiGenderize, getApiFlag];
 
   getApiNationalize( cardData );
 
-  setTimeout( () => {
+  setTimeout(() => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
 
     if (!cardData.nat) {
-      console.warn( "Most likely failed to retrieve nat data in time...\nDefaulting to US" )
+      console.warn("Most likely failed to retrieve nat data in time...\nDefaulting to US")
       cardData.nat = "US"
     }
 
@@ -268,14 +284,14 @@ function catify( cardData, callback ) {
   //     "age": 49
   // }
 
-    setTimeout( () => {
+    setTimeout(() => {
       console.log("Resolved data...")
       console.log(cardData)
       updateStorage( cardData );
       callback(cardData); // nextPage(cardData)
-    }, 100 );
+    }, 100);
 
-  },500)
+  }, 500)
 
 }
 
