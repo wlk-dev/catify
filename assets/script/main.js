@@ -47,7 +47,7 @@ function populateMainCard (cardData) {
   $("#flag-img").attr("src", cardData.flag_img_url)
   $("#breed-img").css("background-color", cardData.card_color)
   $("#breed-attr")
-  $("#wiki-link").text(cardData.cat_ref.wikipedia_url)
+  $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("src", cardData.cat_ref.wikipedia_url)
 }
 
 function setThemeColor ( color ) {
@@ -170,7 +170,7 @@ function nextPage ( cardData ) {
 function catify( cardData, callback ) {
   let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
 
-  getApiNationalize( cardData );
+  // getApiNationalize( cardData );
 
   setTimeout( () => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
@@ -180,14 +180,97 @@ function catify( cardData, callback ) {
       cardData.nat = "US"
     }
 
-    for ( const idx in apis ) {
-      let currentAPI = apis[idx];
-      currentAPI( cardData );
-    }
+    // for ( const idx in apis ) {
+    //   let currentAPI = apis[idx];
+    //   currentAPI( cardData );
+    // }
+
+    cardData = {
+      "name": "will",
+      "original_name": "Will",
+      "card_color": "#871b1b",
+      "nat": "GB",
+      "all_nats": [
+          {
+              "country_id": "GB",
+              "probability": 0.105
+          },
+          {
+              "country_id": "AU",
+              "probability": 0.065
+          },
+          {
+              "country_id": "US",
+              "probability": 0.065
+          },
+          {
+              "country_id": "NZ",
+              "probability": 0.06
+          },
+          {
+              "country_id": "CN",
+              "probability": 0.052
+          }
+      ],
+      "flag_img_url": "https://flagcdn.com/w20/gb.png",
+      "cat_origin": "United Kingdom",
+      "cat_img_url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg",
+      "cat_breed": "Burmilla",
+      "cat_id": "buri",
+      "cat_ref": {
+          "weight": {
+              "imperial": "6 - 13",
+              "metric": "3 - 6"
+          },
+          "id": "buri",
+          "name": "Burmilla",
+          "cfa_url": "http://cfa.org/Breeds/BreedsAB/Burmilla.aspx",
+          "vetstreet_url": "http://www.vetstreet.com/cats/burmilla",
+          "temperament": "Easy Going, Friendly, Intelligent, Lively, Playful, Social",
+          "origin": "United Kingdom",
+          "country_codes": "GB",
+          "country_code": "GB",
+          "description": "The Burmilla is a fairly placid cat. She tends to be an easy cat to get along with, requiring minimal care. The Burmilla is affectionate and sweet and makes a good companion, the Burmilla is an ideal companion to while away a lonely evening. Loyal, devoted, and affectionate, this cat will stay by its owner, always keeping them company.",
+          "life_span": "10 - 15",
+          "indoor": 0,
+          "lap": 1,
+          "alt_names": "",
+          "adaptability": 5,
+          "affection_level": 5,
+          "child_friendly": 4,
+          "dog_friendly": 4,
+          "energy_level": 3,
+          "grooming": 3,
+          "health_issues": 3,
+          "intelligence": 3,
+          "shedding_level": 3,
+          "social_needs": 4,
+          "stranger_friendly": 3,
+          "vocalisation": 5,
+          "experimental": 0,
+          "hairless": 0,
+          "natural": 0,
+          "rare": 0,
+          "rex": 0,
+          "suppressed_tail": 0,
+          "short_legs": 0,
+          "wikipedia_url": "https://en.wikipedia.org/wiki/Burmilla",
+          "hypoallergenic": 0,
+          "reference_image_id": "jvg3XfEdC",
+          "image": {
+              "id": "jvg3XfEdC",
+              "width": 960,
+              "height": 960,
+              "url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg"
+          }
+      },
+      "gender": "male",
+      "age": 49
+  }
 
     setTimeout( () => {
       console.log("Resolved data...")
-      console.log(cardData.age)
+      console.log(cardData)
       updateStorage( cardData );
       callback(cardData); // nextPage(cardData)
     }, 100 );
