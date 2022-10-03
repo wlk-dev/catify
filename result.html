@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style2.css"  />
+    <link rel="stylesheet" href="./assets/css/style2.css" />
 </head>
 
 <body>
@@ -17,29 +17,49 @@
 
     <!--card section-->
 
-    <header>
-        <!-- main banner -->
+    <header class="container-fluid">
+
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
     </header>
 
     <div class="container">
         <main class="row">
-            <div class="col-7">
-                <!-- This will no longer be a card -->
-                <h2>Name?</h2>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-            </div>
-            <div class="col-5">
-                <img src="assets/image/pexels-karina-badura-6982650.jpg" alt="A picture of a cat" width="500" height="500" >
+            <!-- <div class="col-3"></div> -->
+            <div class="col-6 cardXcontainer">
+                <h5>Results :</h5>
+                <div class="cardX" id="top-card">
+                    
+                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="300" height="300">
+                    <!-- <div class="containerX">
+                        <h4><b>John Doe</b></h4>
+                        <p>Architect & Engineer</p>
+                    </div> -->
+                </div>
             </div>
 
-            <!-- I know this looks really bad, but this is the general layout LOL -->
+            <ul class=" list-group col-6 list-group-flush">
+                <li class="list-group-item"></li>
+                <li class="list-group-item">Item #1</li>
+                <li class="list-group-item">Item #2</li>
+                <li class="list-group-item">Item #3</li>
+                <li class="list-group-item">Item #4</li>
+                <li class="list-group-item">Item #5</li>
+                <li class="list-group-item">Item #6</li>
+            </ul>
 
+
+
+            <!-- <div class="col-3"></div> -->
         </main>
         <aside class="row form-group"></aside>
 
@@ -48,43 +68,25 @@
             <div class="col-lg">
 
                 <div class="cardY">
-                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="150" height="150">
-                    <div class="containerX">
+                    <div class="containerX text-center">
                         <h4><b>John Doe</b></h4>
-                        <p>Architect & Engineer</p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
+                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="200" height="200">
                 </div>
 
             </div>
 
-            <div class="col-lg">
+            <!-- <div class="col-1 "></div> -->
 
+            <!-- <div class="col-1 "></div> -->
+            <div class="col-4">
                 <div class="cardY">
-                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="150" height="150">
-                    <div class="containerX">
+                    <div class="containerX text-center">
                         <h4><b>John Doe</b></h4>
-                        <p>Architect & Engineer</p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-
+                    <img class="cardImage1" src="./assets/image/image2.jpg" alt="Avatar" width="200" height="200">
                 </div>
+         
             </div>
 
         </aside>
@@ -98,7 +100,7 @@
 
 
 
-
+    <footer id="trial1" class ="themeColor" >Project by William Mariam Tarek Dong </footer>
 
 
 
