@@ -28,7 +28,7 @@
 
         <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
+              <a class="nav-link active" id="go-home" href="#">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -42,17 +42,18 @@
     <div class="container">
         <main class="row">
             <div class="col-6 cardXcontainer">
-                <h5 id="cat-breed"></h5>
                 <div class="cardX" id="top-card">
-                    <img class="cardImage1" id="breed-img" src="./assets/image/image2.jpg" alt="Avatar" width="300" height="300">
+                    <h5 id="cat-breed"></h5>
                 </div>
+                <img class="cardImage1" id="breed-img" src="./assets/image/image2.jpg" alt="Avatar" width="400" height="400">
             </div>
 
             <ul class=" list-group col-6 list-group-flush">
                 <li class="list-group-item"></li>
                 <li class="list-group-item font-weight-bolder" id="human-name">Name</li>
                 <li class="list-group-item" id="gender">Gender</li>
-                <li class="list-group-item" id="country-code">Country<img src="" alt="Country Flag" id="flag-img"></img></li>
+                <li class="list-group-item"><span id="country-code">Country</span><img src="" alt="Country Flag" id="flag-img" width="20" height="10"></img></li>
+                
                 <li class="list-group-item" id="user-theme">My Color</li>
                 <li class="list-group-item" id="breed-attr">Attributes</li>
                 <li class="list-group-item" id="wiki-link">Breed Info</li>
@@ -140,28 +141,34 @@
         })();
     </script>
 
-		   <!-- Swiper JS -->
-			 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $("#go-home").on("click", (evt) => {
+            window.open(window.location.origin + "/projs/catify/", "_self");
+        })
+    </script>
 
-			 <!-- Initialize Swiper -->
-			 <script>
-				 var swiper = new Swiper(".mySwiper", {
-					 slidesPerView: 3,
-					 spaceBetween: 30,
-					 slidesPerGroup: 3,
-					 loop: true,
-					 loopFillGroupWithBlank: true,
-					 pagination: {
-						 el: ".swiper-pagination",
-						 clickable: true,
-					 },
-					 navigation: {
-						 nextEl: ".swiper-button-next",
-						 prevEl: ".swiper-button-prev",
-					 },
-				 });
-			 </script>
-	
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
 </body>
 
 </html>
