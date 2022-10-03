@@ -159,11 +159,6 @@ footer {
   transition: color 1s;
 }
 
-/* .card:hover:before {
-  animation: none;
-  opacity: 0;
-} */
-
 .card::before{
   content:"";
   width: 104%;

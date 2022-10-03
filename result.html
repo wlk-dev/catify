@@ -8,39 +8,60 @@
     <title>Catify</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style2.css"  />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
 </head>
 
 <body>
 
 
-    <!--card section-->
-
-    <header>
-        <!-- main banner -->
-    </header>
-
-    <div class="container">
-        <main class="row">
-            <div class="col-7">
-                <!-- This will no longer be a card -->
-                <h2>Name?</h2>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-                <p>Other Data</p>
-            </div>
-            <div class="col-5">
-                <img src="assets/image/pexels-karina-badura-6982650.jpg" alt="A picture of a cat" width="500" height="500" >
-            </div>
-
-            <!-- I know this looks really bad, but this is the general layout LOL -->
-
+<main>
+  <!-- <div class="container">
+    <main class="row">
+        <div class="col-7">
+           This will no longer be a card
+             <h2>Name?</h2>
+              <p>Other Data</p>
+              <p>Other Data</p>
+              <p>Other Data</p>
+              <p>Other Data</p>
+              <p>Other Data</p>
+               <p>Other Data</p>
+               <p>Other Data</p>
+          </div> -->
+	<div class ="d-flex flex-row">
+    <div class="card" style="width: 18rem;">
+       <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+        	<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+    </div>
+        </div>
+          <div id ="catImg">
+            <img src="assets/image/pexels-karina-badura-6982650.jpg" alt="A picture of a cat" width="500" height="500" >
+          </div>
+	</div>				
         </main>
+	<section>
+
+		<div class ="container">
+			<div class ="content">
+				<div class ="card">
+					<div class = "image">
+						<img src="./assets/image/image1.jpg" alt="cat paws">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
         <aside class="row form-group"></aside>
 
         <aside class=" row top-buffer form-group">
@@ -63,6 +84,9 @@
                         <a href="#" class="card-link">Another link</a>
                     </div>
                 </div>
+										<div class="swiper-button-next"></div>
+										<div class="swiper-button-prev"></div>
+										<div class="swiper-pagination"></div>
 
             </div>
 
@@ -84,8 +108,13 @@
                         <a href="#" class="card-link">Another link</a>
                     </div>
 
+
                 </div>
             </div>
+					</div>
+				</div>
+		
+						
 
         </aside>
 
@@ -98,8 +127,7 @@
 
 
 
-
-
+ <footer id="trial1" class ="themeColor" >Credits</footer>
 
 
 
@@ -112,6 +140,7 @@
             catify( urlParams, console.log ); // replace console.log with dynamic element creation function
         })();
     </script>
+	
 </body>
 
 </html>
