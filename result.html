@@ -65,8 +65,7 @@
 
         <aside class=" row top-buffer form-group">
             <!-- other cards -->
-            <!-- <div class="col-1"></div> -->
-            <div class="col-4">
+            <div class="col-lg">
 
                 <div class="cardY">
                     <div class="containerX text-center">
@@ -90,7 +89,6 @@
          
             </div>
 
-            <!-- <div class="col-1"></div> -->
         </aside>
 
     </div>
@@ -111,7 +109,9 @@
     <script src="assets/script/main.js"></script>
     <script>
         (function () {
-            // placeholder();
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            catify( urlParams, console.log ); // replace console.log with dynamic element creation function
         })();
     </script>
 </body>
