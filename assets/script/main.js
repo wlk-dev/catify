@@ -1,48 +1,5 @@
-// document.body.style.backgroundImage = "url(./assets/image/pexels-karina-badura-6982650.jpg)"
-
 // CREDIT ALL API's
-
-// expected input : YOUR_NAME, COLOR ( drop menu initially, updated to new tech color picker  ) 
-// ^^^ check edgecases on invalid name input
-
-
-
-
-
-// get nationality, based on name : https://nationalize.io/ ( save all country id's and probablities )
-// save highest probablity of nationality as main nationality
-// get age, basedon name and nationality : https://agify.io/ 
-// get gender, based on name and nationality : https://genderize.io/ ( use localization )
-
-// save this to local vvv
-// dictionary of country_id to an array of cat objects ( randomly choose from array )
-// use this to get breed_id ^^^
-// use breed_id to get the image and other information
-
-// expected output
-// { 
-  //     name : usr_name,
-  //     card_color, color,
-  //     nat : main_nationality,
-  //     all_nats : all_nationalities,
-  //     flag : flag_url,
-  //     age : age,
-  //     gender : gender
-  //     cat_img_url : url,
-//     breed_name : cat_breed,
-//     ref : cat_obj,
-//  }
-
-
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
-
-//Global Variables:
-
-// var cardData = {
-//   name : "gary",
-//   cat_id : "hbro"
-// }
-
 
 
 //Theme color pallet
@@ -83,6 +40,18 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
+function populateMainCard (cardData) {
+  $("#breed-img").attr("src", cardData.cat_img_url)
+  $("#cat-breed").text(cardData.cat_breed)
+  $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
+  $("#gender").text("Gender: " + cardData.gender)
+  $("#country-code").text(cardData.nat)
+  $("#flag-img").attr("src", cardData.flag_img_url.toLowerCase())
+  $("#breed-img").css("background-color", cardData.card_color)
+  $("#breed-attr")
+  $("#wiki-link").text(cardData.cat_ref.wikipedia_url)
+}
+
 function setThemeColor ( color ) {
   let themeColor = $(".themeColor")
   themeColor.css("color", color);
@@ -100,6 +69,7 @@ function setStorage (data){
 
 function updateStorage ( cardData ) {
   let storedData = getStored() || [];
+  console.log(cardData.original_name, cardData.cat_id, "STORING....")
   storedData.push( {name : cardData.original_name, cat_id : cardData.cat_id} )
   setStorage( storedData )
 }
