@@ -4,27 +4,27 @@
 
 //Theme color pallet
 document.addEventListener('coloris:pick', event => {
-    //themeColor class(font, welcome)
-    setThemeColor(event.detail.color)
-    //button background-color
-    $("#submit-user-name").css("background-color", event.detail.color)
+  //themeColor class(font, welcome)
+  setThemeColor(event.detail.color)
+  //button background-color
+  $("#submit-user-name").css("background-color", event.detail.color)
 
-  });
+});
 
 
 $('#submit-user-name').on("click", function (event) {
   var cardData = {
-    name : "",
+    name: "",
   }
 
   event.preventDefault();
 
   var username = $('#user-name-input')
 
-  if (onlyLetters(username.val())){
+  if (onlyLetters(username.val())) {
     cardData.name = username.val().toLowerCase()
     cardData.original_name = username.val()
-  } else {alert ("invalid input, use letters only")}
+  } else { alert("invalid input, use letters only") }
 
   cardData.card_color = $("#colorisVal").val() || "red";
   setThemeColor(cardData.card_color)
@@ -36,11 +36,11 @@ $('#submit-user-name').on("click", function (event) {
 
   // catify( cardData, nextPage );
 
-  nextPage( cardData );
+  nextPage(cardData);
 });
 
 // Util functions
-function populateMainCard (cardData) {
+function populateMainCard(cardData) {
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
@@ -52,41 +52,41 @@ function populateMainCard (cardData) {
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url)
 }
 
-function setThemeColor ( color ) {
+function setThemeColor(color) {
   let themeColor = $(".themeColor")
   themeColor.css("color", color);
 }
 
-function getStored (){
+function getStored() {
   // data to retrive goes here
   return JSON.parse(localStorage.getItem("stored-objs"))
 }
 
-function setStorage (data){
+function setStorage(data) {
   // data to store goes here
-  localStorage.setItem("stored-objs",JSON.stringify(data))
+  localStorage.setItem("stored-objs", JSON.stringify(data))
 }
 
-function updateStorage ( cardData ) {
+function updateStorage(cardData) {
   let storedData = getStored() || [];
   console.log(cardData.original_name, cardData.cat_id, "STORING....")
-  storedData.push( {name : cardData.original_name, cat_id : cardData.cat_id} )
-  setStorage( storedData )
+  storedData.push({ name: cardData.original_name, cat_id: cardData.cat_id })
+  setStorage(storedData)
 }
 
-function getCatObj (cardData, breeds) {
+function getCatObj(cardData, breeds) {
   console.log("Retrieving cat object...", cardData.nat)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
-  if ( catID ) {
-    for ( const idx in breeds[nat] ) {
-      if ( breeds[nat][idx].id === catID ) {
+  if (catID) {
+    for (const idx in breeds[nat]) {
+      if (breeds[nat][idx].id === catID) {
         return breeds[nat][idx];
       }
     }
     console.warn("Could not find target_breed of ", catID, " randomly choosing...")
   }
-  return getRandomChoice( breeds[nat] );
+  return getRandomChoice(breeds[nat]);
 }
 
 function getRandomChoice(array) {
@@ -110,7 +110,7 @@ function onlyLetters(str) {
 function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
     cardData.nat = getValidEntry(cardData.nat, breedData.all_codes) // Validate our NAT with available NATs
-    let catBreed = getCatObj( cardData, breedData );
+    let catBreed = getCatObj(cardData, breedData);
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
     cardData.cat_id = catBreed.id
@@ -119,7 +119,7 @@ function getApiCat(cardData) {
   return cardData;
 }
 
-function getApiFlag( cardData, flag_width="w20" ) {
+function getApiFlag(cardData, flag_width = "w20") {
   cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat}.png`;
   return cardData;
 }
@@ -135,6 +135,9 @@ function getApiAgify(cardData) {
     .then(function (data) {
       cardData.age = data.age
     })
+    // .catch (function (data){
+    //   cardData.age = ""
+    // })
 };
 
 //Api for Nationality -nationalize.io
@@ -149,6 +152,13 @@ function getApiNationalize(cardData) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
     })
+    .catch (function (data){
+      cardData.nat= ""
+
+    })
+
+    
+  
 };
 
 //Api for Gender -genderize.io/
@@ -162,37 +172,43 @@ function getApiGenderize(cardData) {
     .then(function (data) {
       cardData.gender = data.gender
     })
-};
+    .catch  (function (data){
+      var randomGender = Math.floor(Math.random()* data.length)
+      var genderValue = data[randomGender]
+      cardData.gender = data.randomGender
+    }) 
 
-function nextPage ( cardData ) {
-  window.open( "result.html?" + new URLSearchParams( cardData ), "_self" )
 }
 
-function catify( cardData, callback ) {
-  let apis = [ getApiCat, getApiAgify, getApiGenderize, getApiFlag ];
+function nextPage(cardData) {
+  window.open("result.html?" + new URLSearchParams(cardData), "_self")
+}
 
-  getApiNationalize( cardData );
+function catify(cardData, callback) {
+  let apis = [getApiCat, getApiAgify, getApiGenderize, getApiFlag];
 
-  setTimeout( () => {
+  getApiNationalize(cardData);
+
+  setTimeout(() => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
 
     if (!cardData.nat) {
-      console.warn( "Most likely failed to retrieve nat data in time...\nDefaulting to US" )
+      console.warn("Most likely failed to retrieve nat data in time...\nDefaulting to US")
       cardData.nat = "US"
     }
 
-    for ( const idx in apis ) {
+    for (const idx in apis) {
       let currentAPI = apis[idx];
-      currentAPI( cardData );
+      currentAPI(cardData);
     }
 
-    setTimeout( () => {
+    setTimeout(() => {
       console.log("Resolved data...")
-      updateStorage( cardData );
+      updateStorage(cardData);
       callback(cardData); // nextPage(cardData)
-    }, 100 );
+    }, 100);
 
-  },500)
+  }, 500)
 
 }
 
