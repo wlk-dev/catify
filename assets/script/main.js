@@ -135,9 +135,10 @@ function getApiAgify(cardData) {
     .then(function (data) {
       cardData.age = data.age
     })
-    // .catch (function (data){
-    //   cardData.age = ""
-    // })
+    .catch(function (error){
+      cardData.age = 30
+      console.log (error)
+    })
 };
 
 //Api for Nationality -nationalize.io
@@ -152,9 +153,9 @@ function getApiNationalize(cardData) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
     })
-    .catch (function (data){
+    .catch (function (error){
       cardData.nat= ""
-
+      console.log(error)
     })
 
     
@@ -172,10 +173,9 @@ function getApiGenderize(cardData) {
     .then(function (data) {
       cardData.gender = data.gender
     })
-    .catch  (function (data){
-      var randomGender = Math.floor(Math.random()* data.length)
-      var genderValue = data[randomGender]
-      cardData.gender = data.randomGender
+    .catch (function (error){
+      cardData.gender = getRandomChoice(["male", "female"])
+      console.log (error)
     }) 
 
 }
