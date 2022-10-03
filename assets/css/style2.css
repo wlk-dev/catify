@@ -4,10 +4,16 @@
   margin: 0 auto;
 }
 
-.cardX, .cardY {
+.cardX, .cardY, main {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+}
+
+main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 20px;
 }
 
 .cardY {
@@ -29,4 +35,30 @@
 .cardImage1 {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+footer {
+  background-color: rgb(0, 0, 0);
+  font-size: 25px;
+  text-align: center;
+  padding: 15px;
+  font-family: "Pacifico";
+  color: white;
+  margin-top: 1%;
+  -webkit-text-stroke: 0.5px black;
+}
+
+header {
+  background-color: black;
+  color: white;
+  margin-bottom: 1%;
+  /* border: red 20px solid; */
+}
+
+.cardXcontainer {
+  text-align: center;
+}
+
+.list-group {
+  text-align: left;
 }
