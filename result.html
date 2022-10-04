@@ -105,14 +105,19 @@
 
                 catify(paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
 
-                let storedCards = getStored()
-                for ( const key in storedCards ) {
-                    createCard( storedCards[key] )
-                }
+                setTimeout( function () {
+                    let storedCards = getStored()
+                    console.log(storedCards)
+                    for ( const key in storedCards ) {
+                        createCard( storedCards[key] )
+                    }
+    
+                    $(".clickable-card").on("click", (evt) => {
+                        populateMainCard( storedCards[$(evt.target).data("key")], storedCards[$(evt.target).data("key")].flag_img_url )
+                    })
 
-                $(".clickable-card").on("click", (evt) => {
-                    catify( storedCards[$(evt.target).data("key")], populateMainCard )
-                })
+                }, 1000)
+
 
             })();
         </script>
