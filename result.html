@@ -11,11 +11,8 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style2.css" />
 
-		  <!-- Link Swiper's CSS -->
-		<link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-    />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
 </head>
 
@@ -28,10 +25,10 @@
 
         <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link active" id="go-home" href="#">Home</a>
+                <a class="nav-link active" id="go-home" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/wlk-dev/catify">GitHub</a>
+                <a class="nav-link" target="_blank" href="https://github.com/wlk-dev/catify">GitHub</a>
             </li>
         </ul>
     </header>
@@ -42,15 +39,17 @@
                 <div class="cardX" id="top-card">
                     <h5 id="cat-breed"></h5>
                 </div>
-                <img class="cardImage1" id="breed-img" src="./assets/image/image2.jpg" alt="Avatar" width="400" height="400">
+                <img class="cardImage1" id="breed-img" src="./assets/image/image2.jpg" alt="Avatar" width="400"
+                    height="400">
             </div>
 
             <ul class=" list-group col-12 col-lg-6 list-group-flush">
                 <li class="list-group-item"></li>
                 <li class="list-group-item font-weight-bolder" id="human-name">Name</li>
                 <li class="list-group-item" id="gender">Gender</li>
-                <li class="list-group-item"><span id="country-code">Country</span><img src="" alt="Country Flag" class="flag" id="flag-img" width="20" height="10"></img></li>
-                
+                <li class="list-group-item"><span id="country-code">Country</span><img src="" alt="Country Flag"
+                        class="flag" id="flag-img" width="20" height="10"></img></li>
+
                 <li class="list-group-item" id="breed-attr">Attributes</li>
                 <li class="list-group-item"><a href="" target="_blank" id="wiki-link"></a></li>
             </ul>
@@ -58,21 +57,28 @@
 
 
         </main>
-	<section>
+        <section>
 
+<<<<<<< HEAD
 		<div class ="swiper mySwiper container">
 			<div class ="swiper-wrapper content" id="my-content">
+=======
+            <div class="swiper mySwiper container">
+                <div class="swiper-wrapper content">
+>>>>>>> main
 
-				<div class ="swiper-slide card">
-					<div class="card-content">
-						<div class = "image">
-							<img src="./assets/image/image1.jpg" alt="Avatar">
-						</div>
+                    <div class="swiper-slide card">
+                        <div class="card-content">
+                            <div class="image">
+                                <img src="./assets/image/image1.jpg" alt="Avatar">
+                            </div>
 
-						<div class="flags">
-							<img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img> <!-- Placeholder -->
-						</div>
+                            <div class="flags">
+                                <img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img>
+                                <!-- Placeholder -->
+                            </div>
 
+<<<<<<< HEAD
 						<div class="userNameCat">
 						    <span class="userName">Person Name</span>
 						    <span class="catBreed" >cat breed</span>
@@ -81,39 +87,47 @@
 				</div>
 			</div>	  
 		</div>
+=======
+                            <div class="userNameCat">
+                                <span class="userName">Person Name</span>
+                                <span class="catBreed">cat breed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+>>>>>>> main
 
-		<div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-pagination"></div>
-		
-	</section>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+
+        </section>
 
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/script/main.js"></script>
-    <script>
-        (function () {
-            const urlParams = new URLSearchParams( window.location.search )
-            const paramsObj = {};
 
-            for ( const[key, value] of urlParams ) {
-                paramsObj[key] = value;
-            }
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/script/main.js"></script>
+        <script>
+            (function () {
+                const urlParams = new URLSearchParams(window.location.search)
+                const paramsObj = {};
 
-            catify( paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
-        })();
-    </script>
+                for (const [key, value] of urlParams) {
+                    paramsObj[key] = value;
+                }
 
-    <script>
-        $("#go-home").on("click", (evt) => {
-            window.open(window.location.origin + "/projs/catify/", "_self");
-        })
-    </script>
+                catify(paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
+            })();
+        </script>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        <script>
+            $("#go-home").on("click", (evt) => {
+                window.open(window.location.origin + "/projs/catify/", "_self");
+            })
+        </script>
 
+<<<<<<< HEAD
     <!-- Initialize Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {
@@ -139,6 +153,55 @@
 		<a href="http://thecatapi.com/" target="_blank">Cat API</a>
 		<a href="http://flagpedia.net/download/api" target="_blank">Flag</a>
 	</footer>
+=======
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
+
+        <footer id="trial1" class="themeColor">Credits:
+            <a href="http://agify.io/" target="_blank">Agify</a>
+            <a href="http://nationalize.io/" target="_blank">Nation</a>
+            <a href="http://thecatapi.com/" target="_blank">Cat API</a>
+            <a href="http://flagpedia.net/download/api" target="_blank">Flag</a>
+        </footer>
+>>>>>>> main
 </body>
 
 

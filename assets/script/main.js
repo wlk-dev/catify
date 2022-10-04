@@ -1,6 +1,43 @@
 // CREDIT ALL API's
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
+//ROUGH DRAFT DOM
+let mySwiper = $('.swiper-wrapper')
+
+
+const domElements = $(`
+<div class="swiper-slide card">
+<div class="card-content">
+    <div class="image">
+        <img src="./assets/image/image1.jpg" alt="Avatar">
+    </div>
+
+    <div class="flags">
+        <img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img>
+        <!-- Placeholder -->
+    </div>
+
+    <div class="userNameCat">
+        <span class="userName">Person Name</span>
+        <span class="catBreed">cat breed</span>
+    </div>
+</div>
+</div>`
+);
+
+mySwiper.append(domElements);
+
+
+// mySwiper.append(swiperSlide)
+//   .append(cardContent)
+//   .append(imageDiv)
+//   .append(image)
+
+
+
+
+
+
 
 //Theme color pallet
 document.addEventListener('coloris:pick', event => {
@@ -45,15 +82,17 @@ function populateMainCard(cardData) {
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
   $("#flag-img").attr("src", cardData.flag_img_url)
-  $("#breed-img").css("background-color", cardData.card_color)
+  // $("#breed-img").css("background-color", white)
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
 }
 
-function setThemeColor ( color ) {
+function setThemeColor(color) {
   let themeColor = $(".themeColor")
   themeColor.css("color", color);
 }
+
+
 
 function getStored() {
   // data to retrive goes here
@@ -65,7 +104,7 @@ function setStorage(data) {
   localStorage.setItem("stored-objs", JSON.stringify(data))
 }
 
-function updateStorage ( cardData ) {
+function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
   storedData[cardData.name] = {name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id}
@@ -108,7 +147,7 @@ function onlyLetters(str) {
 function getApiCat(cardData) {
   $.getJSON("assets/json/sorted_breeds.json", (breedData) => {
     cardData.nat = getValidEntry(cardData.nat, breedData.all_codes) // Validate our NAT with available NATs
-    let catBreed = getCatObj( cardData, breedData );
+    let catBreed = getCatObj(cardData, breedData);
     cardData.cat_origin = catBreed.origin
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
@@ -118,7 +157,7 @@ function getApiCat(cardData) {
   return cardData;
 }
 
-function getApiFlag( cardData, flag_width="w20" ) {
+function getApiFlag(cardData, flag_width = "w20") {
   cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
   return cardData;
 }
@@ -134,9 +173,9 @@ function getApiAgify(cardData) {
     .then(function (data) {
       cardData.age = data.age
     })
-    .catch(function (error){
+    .catch(function (error) {
       cardData.age = 30
-      console.log (error)
+      console.log(error)
     })
 };
 
@@ -152,13 +191,13 @@ function getApiNationalize(cardData) {
       cardData.nat = data.country[0].country_id
       cardData.all_nats = data.country
     })
-    .catch (function (error){
-      cardData.nat= ""
+    .catch(function (error) {
+      cardData.nat = ""
       console.log(error)
     })
 
-    
-  
+
+
 };
 
 //Api for Gender -genderize.io/
@@ -172,10 +211,10 @@ function getApiGenderize(cardData) {
     .then(function (data) {
       cardData.gender = data.gender
     })
-    .catch (function (error){
+    .catch(function (error) {
       cardData.gender = getRandomChoice(["male", "female"])
-      console.log (error)
-    }) 
+      console.log(error)
+    })
 
 }
 
@@ -287,7 +326,7 @@ function catify(cardData, callback) {
     setTimeout(() => {
       console.log("Resolved data...")
       console.log(cardData)
-      updateStorage( cardData );
+      updateStorage(cardData);
       callback(cardData); // nextPage(cardData)
     }, 100);
 
