@@ -39,7 +39,7 @@ $('#submit-user-name').on("click", function (event) {
 
 // Util functions
 function createCard (cardData) { // you need to ask dong about this one, because idk how to dynamically add to the carousel
-  $("#my-content").append(
+  $(".mySwiper").append(
     $("<div class='swiper-slide card'>").append(
 
       $("<div class='image'>").append(
@@ -89,7 +89,7 @@ function setStorage(data) {
 function updateStorage ( cardData ) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
-  storedData[cardData.name.toLowerCase()] = {name : cardData.original_name, cat_id : cardData.cat_id}
+  storedData[cardData.name] = {name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id}
   setStorage( storedData )
 }
 
