@@ -81,6 +81,7 @@ footer {
   color: white;
   margin-top: 5%;
   -webkit-text-stroke: 0.5px black;
+  z-index: 1000;
 }
 
 
@@ -99,6 +100,7 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 section .card .image{
@@ -106,7 +108,7 @@ section .card .image{
   width: 140px;
   border-radius: 50%;
   padding: 3px;
-  background: orange;
+  background: rgb(0, 0, 0);
 }
 
 section .card .image img {
@@ -123,6 +125,7 @@ section .card .image img {
   border-radius: 20px;
   margin: 20px 0;
   width: 280px;
+  
 }
 
 .card::before {
@@ -130,7 +133,7 @@ section .card .image img {
   position: absolute;
   height: 55%;
   width: 100%;
-  background: orange;
+  background: black;
   border-radius: 20px 20px 0 0;
 }
 
@@ -181,6 +184,7 @@ a {
   text-align: center;
   margin: 5px;
 }
+
 
 /* Dropup Button */
 .dropbtn {
