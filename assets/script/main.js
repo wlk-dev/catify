@@ -2,7 +2,7 @@
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
 
-function createCard(cardData) {
+function createCard(cardData) { // Dynamic card creation with template literal, thanks Gary
   $('.swiper-wrapper').append(
     
     $(`<div class="swiper-slide card clickable-card" style="border: 2px solid ${cardData.card_color};">
@@ -38,7 +38,7 @@ document.addEventListener('coloris:pick', event => {
 
 
 $('#submit-user-name').on("click", function (event) {
-  var cardData = {
+  var cardData = { // setup our initial data
     name: "",
   }
 
@@ -46,7 +46,7 @@ $('#submit-user-name').on("click", function (event) {
 
   var username = $('#user-name-input')
 
-  if (onlyLetters(username.val())) {
+  if (onlyLetters(username.val())) { // check for valid user input, then gather some basic data
     cardData.name = username.val().toLowerCase()
     cardData.original_name = username.val()
 
@@ -58,9 +58,9 @@ $('#submit-user-name').on("click", function (event) {
     const disappear = document.getElementById('disappear')
     disappear.style.display = 'none'
   
-    nextPage(cardData);
+    nextPage(cardData); // Go to results page and pass gather data as url query
 
-  } else { swal("Invalid text input, use letters only and do not leave blank.") }
+  } else { swal("Invalid text input, use letters only and do not leave blank.") } // Alert user if anything went wrong with input
 
 });
 
@@ -80,7 +80,7 @@ function populateMainCard(cardData, flag_url) {
   $("#clear-storage").css("border", `1px solid ${cardData.card_color}`)
 }
 
-function getSocial(rating) {
+function getSocial(rating) { // Our cat sociability rating system
   switch (rating) {
     case 1:
       return "Very Anti-Social"
@@ -114,22 +114,22 @@ function setStorage(data) {
   localStorage.setItem("stored-objs", JSON.stringify(data))
 }
 
-function clearStored() {
+function clearStored() { // Clear our stored data and remove cards
   setStorage({})
   $(".swiper-wrapper").empty()
 }
 
-function updateStorage(cardData) {
+function updateStorage(cardData) { // Simple storage function
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
-  storedData[cardData.name] = {
+  storedData[cardData.name] = { // The stored data got a bit out of hand and redundant, this type of thing could be fixed with a refactor however we ran out of time
     name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki, cat_origin : cardData.cat_origin,
     flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed, age : cardData.age, gender : cardData.gender, cat_attr : cardData.cat_attr
   }
   setStorage( storedData )
 }
 
-function getCatObj(cardData, breeds) {
+function getCatObj(cardData, breeds) { // this object allows us to either retrieve a specific cat object, or get a random one based off of NAT
   console.log("Retrieving cat object...", cardData.nat)
   let nat = cardData.nat;
   let catID = !!cardData.cat_id ? cardData.cat_id : "";
@@ -149,12 +149,12 @@ function getRandomChoice(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function getValidEntry(entry, entries) {
+function getValidEntry(entry, entries) { // Util function for getting a valid entry from an array
   console.log(`Validating entry of ${entry} from entries : ${entries} result : ${entries.includes(entry)}`)
   if (entries.includes(entry)) {
     return entry;
   }
-  return getRandomChoice(entries)
+  return getRandomChoice(entries) // if not valid return a random one
 }
 
 function onlyLetters(str) {
@@ -207,7 +207,7 @@ function getApiNationalize(cardData) {
       cardData.all_nats = data.country
     })
     .catch(function (error) {
-      cardData.nat = ""
+      cardData.nat = "US"
       console.log(error)
     })
 };
