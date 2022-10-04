@@ -65,16 +65,16 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
-function populateMainCard(cardData) {
+function populateMainCard(cardData, flag_url) {
   $(".main-card-row").css(`border`, `2px solid ${cardData.card_color}`).css(`border-radius`,  `1%` )
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
-  $("#flag-img").attr("src", cardData.getCardFlag())
+  $("#flag-img").attr("src", flag_url)
   $("#breed-attr")
-  $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
+  $("#wiki-link").text(cardData.cat_wiki).attr("href", cardData.cat_wiki)
 }
 
 function setThemeColor(color) {
@@ -96,8 +96,8 @@ function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
   storedData[cardData.name] = {
-    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color,
-    flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki,
+    flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed, age : cardData.age, gender : cardData.gender
   }
   setStorage( storedData )
 }
@@ -143,6 +143,7 @@ function getApiCat(cardData) {
     cardData.cat_img_url = catBreed.image.url;
     cardData.cat_breed = catBreed.name;
     cardData.cat_id = catBreed.id
+    cardData.cat_wiki = catBreed.wikipedia_url
     cardData.cat_ref = catBreed;
   });
   return cardData;
@@ -237,7 +238,7 @@ function catify(cardData, callback) {
       console.log("Resolved data...")
       console.log(cardData)
       updateStorage(cardData);
-      callback(cardData); // nextPage(cardData)
+      callback(cardData, cardData.getCardFlag());
     }, 100);
 
   }, 500)
