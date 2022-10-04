@@ -1,6 +1,23 @@
 // CREDIT ALL API's
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
+//ROUGH DRAFT DOM
+let mySwiper = $('.swiper-wrapper')
+let swiperSlide = $('<div>')
+let cardContent = $('<div>')
+let imageDiv = $('<div>')
+let image= $('img')
+
+mySwiper.append(swiperSlide)
+  .append(cardContent)
+  .append(imageDiv)
+  .append(image)
+
+
+
+
+
+
 
 //Theme color pallet
 document.addEventListener('coloris:pick', event => {
