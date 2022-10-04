@@ -76,6 +76,8 @@ function populateMainCard(cardData, flag_url) {
   $("#flag-img").attr("src", flag_url)
   $("#breed-attr").text( "Sociability, " + getSocial(cardData.cat_attr) )
   $("#wiki-link").attr("href", cardData.cat_wiki)
+
+  $("#clear-storage").css("border", `1px solid ${cardData.card_color}`)
 }
 
 function getSocial(rating) {
@@ -110,6 +112,11 @@ function getStored() {
 function setStorage(data) {
   // data to store goes here
   localStorage.setItem("stored-objs", JSON.stringify(data))
+}
+
+function clearStored() {
+  setStorage({})
+  $(".swiper-wrapper").empty()
 }
 
 function updateStorage(cardData) {
@@ -240,7 +247,7 @@ function catify(cardData, callback) {
     return `https://flagcdn.com/${flag_width}/us.png`
   };
 
-  getApiNationalize( cardData );
+  // getApiNationalize( cardData );
 
   setTimeout(() => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
@@ -250,10 +257,10 @@ function catify(cardData, callback) {
       cardData.nat = "US"
     }
 
-    for ( const idx in apis ) {
-      let currentAPI = apis[idx];
-      currentAPI( cardData );
-    }
+    // for ( const idx in apis ) {
+    //   let currentAPI = apis[idx];
+    //   currentAPI( cardData );
+    // }
 
     setTimeout(() => {
       console.log("Resolved data...")
