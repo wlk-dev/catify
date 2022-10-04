@@ -1,42 +1,30 @@
 // CREDIT ALL API's
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
-//ROUGH DRAFT DOM
-let mySwiper = $('.swiper-wrapper')
 
-
-const domElements = $(`
-<div class="swiper-slide card">
-<div class="card-content">
-    <div class="image">
-        <img src="./assets/image/image1.jpg" alt="Avatar">
+function createCard(cardData) {
+  $('.swiper-wrapper').append(
+    
+    $(`<div class="swiper-slide card clickable-card" style="border: 2px solid ${cardData.card_color};">
+    <div class="card-content" data-key="${cardData.name}">
+        <div class="image clickable-card" style="background-color:${cardData.card_color};">
+            <img src="${cardData.cat_img_url}" alt="Avatar" data-key="${cardData.name}">
+        </div>
+    
+        <div class="flags">
+            <img class="flag" src="${cardData.flag_img_url}" width="20" height="12"></img>
+            <!-- Placeholder -->
+        </div>
+    
+        <div class="userNameCat">
+            <span class="userName">${cardData.original_name}</span>
+            <span class="catBreed">${cardData.cat_breed}</span>
+        </div>
     </div>
-
-    <div class="flags">
-        <img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img>
-        <!-- Placeholder -->
-    </div>
-
-    <div class="userNameCat">
-        <span class="userName">Person Name</span>
-        <span class="catBreed">cat breed</span>
-    </div>
-</div>
-</div>`
-);
-
-mySwiper.append(domElements);
-
-
-// mySwiper.append(swiperSlide)
-//   .append(cardContent)
-//   .append(imageDiv)
-//   .append(image)
-
-
-
-
-
+    </div>`
+    )
+  ) 
+}
 
 
 //Theme color pallet
@@ -61,28 +49,30 @@ $('#submit-user-name').on("click", function (event) {
   if (onlyLetters(username.val())) {
     cardData.name = username.val().toLowerCase()
     cardData.original_name = username.val()
-  } else { alert("invalid input, use letters only") }
 
-  cardData.card_color = $("#colorisVal").val() || "red";
-  setThemeColor(cardData.card_color)
+    cardData.card_color = $("#colorisVal").val() || "red";
+    setThemeColor(cardData.card_color)
+  
+    const progressBar = document.querySelector('.progress-bar')
+    progressBar.setAttribute('id', 'play-animation')
+    const disappear = document.getElementById('disappear')
+    disappear.style.display = 'none'
+  
+    nextPage(cardData);
 
-  const progressBar = document.querySelector('.progress-bar')
-  progressBar.setAttribute('id', 'play-animation')
-  const disappear = document.getElementById('disappear')
-  disappear.style.display = 'none'
+  } else { swal("Invalid text input, use letters only and do not leave blank.") }
 
-  nextPage(cardData);
 });
 
 // Util functions
 function populateMainCard(cardData) {
+  $(".main-card-row").css(`border`, `2px solid ${cardData.card_color}`).css(`border-radius`,  `1%` )
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
-  $("#flag-img").attr("src", cardData.flag_img_url)
-  // $("#breed-img").css("background-color", white)
+  $("#flag-img").attr("src", cardData.getCardFlag())
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
 }
@@ -91,8 +81,6 @@ function setThemeColor(color) {
   let themeColor = $(".themeColor")
   themeColor.css("color", color);
 }
-
-
 
 function getStored() {
   // data to retrive goes here
@@ -107,8 +95,11 @@ function setStorage(data) {
 function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
-  storedData[cardData.name] = { name: cardData.original_name, cat_id: cardData.cat_id }
-  setStorage(storedData)
+  storedData[cardData.name] = {
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color,
+    flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed
+  }
+  setStorage( storedData )
 }
 
 function getCatObj(cardData, breeds) {
@@ -157,11 +148,6 @@ function getApiCat(cardData) {
   return cardData;
 }
 
-function getApiFlag(cardData, flag_width = "w20") {
-  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
-  return cardData;
-}
-
 //Api for age -agify.io
 function getApiAgify(cardData) {
   var requestUrl = `https://api.agify.io?name=${cardData.name}&country_id=${cardData.nat}`;
@@ -195,9 +181,6 @@ function getApiNationalize(cardData) {
       cardData.nat = ""
       console.log(error)
     })
-
-
-
 };
 
 //Api for Gender -genderize.io/
@@ -223,9 +206,19 @@ function nextPage(cardData) {
 }
 
 function catify(cardData, callback) {
-  let apis = [getApiCat, getApiAgify, getApiGenderize, getApiFlag];
+  let apis = [getApiCat, getApiAgify, getApiGenderize];
 
-  getApiNationalize(cardData);
+
+  cardData.getCardFlag = function (flag_width = "w20") {  // We had some trouble with getting the correct flag after returning to the homepage and running it again
+    if (this.nat) {                                       // So this is the patchwork solution...
+      return `https://flagcdn.com/${flag_width}/${this.nat.toLowerCase()}.png`
+    }
+
+    console.warn("Tried to retrieve flag url, without a NAT...\nDefaulting to US flag...")
+    return `https://flagcdn.com/${flag_width}/us.png`
+  };
+
+  getApiNationalize( cardData );
 
   setTimeout(() => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
@@ -235,93 +228,10 @@ function catify(cardData, callback) {
       cardData.nat = "US"
     }
 
-    for (const idx in apis) {
+    for ( const idx in apis ) {
       let currentAPI = apis[idx];
-      currentAPI(cardData);
+      currentAPI( cardData );
     }
-
-    // cardData = {
-    //   "name": "will",
-    //   "original_name": "Will",
-    //   "card_color": "#871b1b",
-    //   "nat": "GB",
-    //   "all_nats": [
-    //       {
-    //           "country_id": "GB",
-    //           "probability": 0.105
-    //       },
-    //       {
-    //           "country_id": "AU",
-    //           "probability": 0.065
-    //       },
-    //       {
-    //           "country_id": "US",
-    //           "probability": 0.065
-    //       },
-    //       {
-    //           "country_id": "NZ",
-    //           "probability": 0.06
-    //       },
-    //       {
-    //           "country_id": "CN",
-    //           "probability": 0.052
-    //       }
-    //   ],
-    //   "flag_img_url": "https://flagcdn.com/w20/gb.png",
-    //   "cat_origin": "United Kingdom",
-    //   "cat_img_url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg",
-    //   "cat_breed": "Burmilla",
-    //   "cat_id": "buri",
-    //   "cat_ref": {
-    //       "weight": {
-    //           "imperial": "6 - 13",
-    //           "metric": "3 - 6"
-    //       },
-    //       "id": "buri",
-    //       "name": "Burmilla",
-    //       "cfa_url": "http://cfa.org/Breeds/BreedsAB/Burmilla.aspx",
-    //       "vetstreet_url": "http://www.vetstreet.com/cats/burmilla",
-    //       "temperament": "Easy Going, Friendly, Intelligent, Lively, Playful, Social",
-    //       "origin": "United Kingdom",
-    //       "country_codes": "GB",
-    //       "country_code": "GB",
-    //       "description": "The Burmilla is a fairly placid cat. She tends to be an easy cat to get along with, requiring minimal care. The Burmilla is affectionate and sweet and makes a good companion, the Burmilla is an ideal companion to while away a lonely evening. Loyal, devoted, and affectionate, this cat will stay by its owner, always keeping them company.",
-    //       "life_span": "10 - 15",
-    //       "indoor": 0,
-    //       "lap": 1,
-    //       "alt_names": "",
-    //       "adaptability": 5,
-    //       "affection_level": 5,
-    //       "child_friendly": 4,
-    //       "dog_friendly": 4,
-    //       "energy_level": 3,
-    //       "grooming": 3,
-    //       "health_issues": 3,
-    //       "intelligence": 3,
-    //       "shedding_level": 3,
-    //       "social_needs": 4,
-    //       "stranger_friendly": 3,
-    //       "vocalisation": 5,
-    //       "experimental": 0,
-    //       "hairless": 0,
-    //       "natural": 0,
-    //       "rare": 0,
-    //       "rex": 0,
-    //       "suppressed_tail": 0,
-    //       "short_legs": 0,
-    //       "wikipedia_url": "https://en.wikipedia.org/wiki/Burmilla",
-    //       "hypoallergenic": 0,
-    //       "reference_image_id": "jvg3XfEdC",
-    //       "image": {
-    //           "id": "jvg3XfEdC",
-    //           "width": 960,
-    //           "height": 960,
-    //           "url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg"
-    //       }
-    //   },
-    //   "gender": "male",
-    //   "age": 49
-    // }
 
     setTimeout(() => {
       console.log("Resolved data...")
