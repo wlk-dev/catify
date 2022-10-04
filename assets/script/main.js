@@ -87,8 +87,6 @@ function getStored() {
   return JSON.parse(localStorage.getItem("stored-objs"))
 }
 
-
-
 function setStorage(data) {
   // data to store goes here
   localStorage.setItem("stored-objs", JSON.stringify(data))
