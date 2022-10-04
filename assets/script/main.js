@@ -2,39 +2,31 @@
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
 //ROUGH DRAFT DOM
-let mySwiper = $('.swiper-wrapper')
 
 
-const domElements = $(`
-<div class="swiper-slide card">
-<div class="card-content">
-    <div class="image">
-        <img src="./assets/image/image1.jpg" alt="Avatar">
+function createCard(cardData) {
+  $('.swiper-wrapper').append(
+    
+    $(`<div class="swiper-slide card">
+    <div class="card-content">
+        <div class="image">
+            <img src="${cardData.cat_img_url}" alt="Avatar">
+        </div>
+    
+        <div class="flags">
+            <img class="flag" src="${cardData.getCardFlag()}" width="20" height="12"></img>
+            <!-- Placeholder -->
+        </div>
+    
+        <div class="userNameCat">
+            <span class="userName">${cardData.original_name}</span>
+            <span class="catBreed">${cardData.cat_breed}</span>
+        </div>
     </div>
-
-    <div class="flags">
-        <img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img>
-        <!-- Placeholder -->
-    </div>
-
-    <div class="userNameCat">
-        <span class="userName">Person Name</span>
-        <span class="catBreed">cat breed</span>
-    </div>
-</div>
-</div>`
-);
-
-mySwiper.append(domElements);
-
-
-// mySwiper.append(swiperSlide)
-//   .append(cardContent)
-//   .append(imageDiv)
-//   .append(image)
-
-
-
+    </div>`
+    )
+  ) 
+}
 
 
 
@@ -53,6 +45,8 @@ $('#submit-user-name').on("click", function (event) {
   var cardData = {
     name: "",
   }
+
+
 
   event.preventDefault();
 
@@ -81,7 +75,7 @@ function populateMainCard(cardData) {
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
-  $("#flag-img").attr("src", cardData.flag_img_url)
+  $("#flag-img").attr("src", cardData.getCardFlag())
   // $("#breed-img").css("background-color", white)
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
@@ -107,7 +101,10 @@ function setStorage(data) {
 function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
-  storedData[cardData.name] = {name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id}
+  storedData[cardData.name] = {
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id,
+    flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed
+  }
   setStorage( storedData )
 }
 
@@ -157,10 +154,10 @@ function getApiCat(cardData) {
   return cardData;
 }
 
-function getApiFlag(cardData, flag_width = "w20") {
-  cardData.flag_img_url = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
-  return cardData;
-}
+// function getApiFlag(cardData, flag_width = "w20") {
+//   cardData.getCardFlag = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
+//   return cardData;
+// }
 
 //Api for age -agify.io
 function getApiAgify(cardData) {
@@ -195,9 +192,6 @@ function getApiNationalize(cardData) {
       cardData.nat = ""
       console.log(error)
     })
-
-
-
 };
 
 //Api for Gender -genderize.io/
@@ -223,7 +217,17 @@ function nextPage(cardData) {
 }
 
 function catify(cardData, callback) {
-  let apis = [getApiCat, getApiAgify, getApiGenderize, getApiFlag];
+  let apis = [getApiCat, getApiAgify, getApiGenderize];
+
+
+  cardData.getCardFlag = function (flag_width = "w20") {  // We had some trouble with getting the correct flag after returning to the homepage and running it again
+    if (this.nat) {                                       // So this is the patchwork solution...
+      return `https://flagcdn.com/${flag_width}/${this.nat.toLowerCase()}.png`
+    }
+
+    console.warn("Tried to retrieve flag url, without a NAT...\nDefaulting to US flag...")
+    return `https://flagcdn.com/${flag_width}/us.png`
+  };
 
   getApiNationalize( cardData );
 
