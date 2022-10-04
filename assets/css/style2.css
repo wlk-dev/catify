@@ -104,6 +104,7 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 section .card .image{
@@ -111,7 +112,7 @@ section .card .image{
   width: 140px;
   border-radius: 50%;
   padding: 3px;
-  background: orange;
+  background: rgb(0, 0, 0);
 }
 
 section .card .image img {
@@ -128,6 +129,7 @@ section .card .image img {
   border-radius: 20px;
   margin: 20px 0;
   width: 280px;
+  
 }
 
 .card::before {
@@ -186,6 +188,7 @@ section .card .image img {
   box-shadow: 0 0 10px #333;
   background-color: #333;
   color: whitesmoke;
+  z-index: 1;
 }
 
 .list-group li {
@@ -195,4 +198,72 @@ section .card .image img {
 a {
   text-align: center;
   margin: 5px;
+}
+
+
+/* The navigation menu */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navigation links */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The subnavigation menu */
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+/* Subnav button */
+.subnav .subnavbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Add a red background color to navigation links on hover */
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: orange;
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #333;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Style the subnav links */
+.subnav-content a {
+  float: left;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+/* Add a grey background color on hover */
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+  display: block;
 }
