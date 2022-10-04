@@ -1,16 +1,14 @@
 // CREDIT ALL API's
 // IMPORTANT: ALL API FUNCTIONS MUST TAKE CARD DATA OBJECT AND OUTPUT CARD DATA OBJECT
 
-//ROUGH DRAFT DOM
-
 
 function createCard(cardData) {
   $('.swiper-wrapper').append(
     
-    $(`<div class="swiper-slide card">
-    <div class="card-content">
-        <div class="image">
-            <img src="${cardData.cat_img_url}" alt="Avatar">
+    $(`<div class="swiper-slide card clickable-card" style="border: 2px solid ${cardData.card_color};">
+    <div class="card-content" data-key="${cardData.name}">
+        <div class="image clickable-card" style="background-color:${cardData.card_color};">
+            <img src="${cardData.cat_img_url}" alt="Avatar" data-key="${cardData.name}">
         </div>
     
         <div class="flags">
@@ -44,8 +42,6 @@ $('#submit-user-name').on("click", function (event) {
     name: "",
   }
 
-
-
   event.preventDefault();
 
   var username = $('#user-name-input')
@@ -70,13 +66,13 @@ $('#submit-user-name').on("click", function (event) {
 
 // Util functions
 function populateMainCard(cardData) {
+  $(".main-card-row").css(`border`, `2px solid ${cardData.card_color}`).css(`border-radius`,  `1%` )
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} years old`)
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
   $("#flag-img").attr("src", cardData.getCardFlag())
-  // $("#breed-img").css("background-color", white)
   $("#breed-attr")
   $("#wiki-link").text(cardData.cat_ref.wikipedia_url).attr("href", cardData.cat_ref.wikipedia_url)
 }
@@ -85,8 +81,6 @@ function setThemeColor(color) {
   let themeColor = $(".themeColor")
   themeColor.css("color", color);
 }
-
-
 
 function getStored() {
   // data to retrive goes here
@@ -102,7 +96,7 @@ function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
   storedData[cardData.name] = {
-    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id,
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color,
     flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed
   }
   setStorage( storedData )
@@ -153,11 +147,6 @@ function getApiCat(cardData) {
   });
   return cardData;
 }
-
-// function getApiFlag(cardData, flag_width = "w20") {
-//   cardData.getCardFlag = `https://flagcdn.com/${flag_width}/${cardData.nat.toLowerCase()}.png`;
-//   return cardData;
-// }
 
 //Api for age -agify.io
 function getApiAgify(cardData) {
@@ -243,89 +232,6 @@ function catify(cardData, callback) {
       let currentAPI = apis[idx];
       currentAPI( cardData );
     }
-
-    // cardData = {
-    //   "name": "will",
-    //   "original_name": "Will",
-    //   "card_color": "#871b1b",
-    //   "nat": "GB",
-    //   "all_nats": [
-    //       {
-    //           "country_id": "GB",
-    //           "probability": 0.105
-    //       },
-    //       {
-    //           "country_id": "AU",
-    //           "probability": 0.065
-    //       },
-    //       {
-    //           "country_id": "US",
-    //           "probability": 0.065
-    //       },
-    //       {
-    //           "country_id": "NZ",
-    //           "probability": 0.06
-    //       },
-    //       {
-    //           "country_id": "CN",
-    //           "probability": 0.052
-    //       }
-    //   ],
-    //   "flag_img_url": "https://flagcdn.com/w20/gb.png",
-    //   "cat_origin": "United Kingdom",
-    //   "cat_img_url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg",
-    //   "cat_breed": "Burmilla",
-    //   "cat_id": "buri",
-    //   "cat_ref": {
-    //       "weight": {
-    //           "imperial": "6 - 13",
-    //           "metric": "3 - 6"
-    //       },
-    //       "id": "buri",
-    //       "name": "Burmilla",
-    //       "cfa_url": "http://cfa.org/Breeds/BreedsAB/Burmilla.aspx",
-    //       "vetstreet_url": "http://www.vetstreet.com/cats/burmilla",
-    //       "temperament": "Easy Going, Friendly, Intelligent, Lively, Playful, Social",
-    //       "origin": "United Kingdom",
-    //       "country_codes": "GB",
-    //       "country_code": "GB",
-    //       "description": "The Burmilla is a fairly placid cat. She tends to be an easy cat to get along with, requiring minimal care. The Burmilla is affectionate and sweet and makes a good companion, the Burmilla is an ideal companion to while away a lonely evening. Loyal, devoted, and affectionate, this cat will stay by its owner, always keeping them company.",
-    //       "life_span": "10 - 15",
-    //       "indoor": 0,
-    //       "lap": 1,
-    //       "alt_names": "",
-    //       "adaptability": 5,
-    //       "affection_level": 5,
-    //       "child_friendly": 4,
-    //       "dog_friendly": 4,
-    //       "energy_level": 3,
-    //       "grooming": 3,
-    //       "health_issues": 3,
-    //       "intelligence": 3,
-    //       "shedding_level": 3,
-    //       "social_needs": 4,
-    //       "stranger_friendly": 3,
-    //       "vocalisation": 5,
-    //       "experimental": 0,
-    //       "hairless": 0,
-    //       "natural": 0,
-    //       "rare": 0,
-    //       "rex": 0,
-    //       "suppressed_tail": 0,
-    //       "short_legs": 0,
-    //       "wikipedia_url": "https://en.wikipedia.org/wiki/Burmilla",
-    //       "hypoallergenic": 0,
-    //       "reference_image_id": "jvg3XfEdC",
-    //       "image": {
-    //           "id": "jvg3XfEdC",
-    //           "width": 960,
-    //           "height": 960,
-    //           "url": "https://cdn2.thecatapi.com/images/jvg3XfEdC.jpg"
-    //       }
-    //   },
-    //   "gender": "male",
-    //   "age": 49
-    // }
 
     setTimeout(() => {
       console.log("Resolved data...")
