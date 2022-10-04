@@ -1,6 +1,7 @@
 # Catify
-By William, Mariam, Tarek & Dong 
 
+## Our Team
+By [William](https://github.com/wlk-dev), [Mariam](https://github.com/Mimimoha), [Tarek](https://github.com/tarekmn) & [Dong](https://github.com/acooro) 
 
 ## Description
 
@@ -40,6 +41,10 @@ In addition, we included screenshot below:
 [Cat API](https://thecatapi.com/)
 
 [Flag API](https://flagpedia.net/download/api)
+
+[Coloris](https://coloris.js.org/)
+
+[SweetAlert2](https://sweetalert2.github.io/)
 
 
 ## License 
