@@ -188,6 +188,7 @@ section .card .image img {
   box-shadow: 0 0 10px #333;
   background-color: #333;
   color: whitesmoke;
+  z-index: 1;
 }
 
 .list-group li {
@@ -200,49 +201,69 @@ a {
 }
 
 
-/* Dropup Button */
-.dropbtn {
+/* The navigation menu */
+.navbar {
+  overflow: hidden;
   background-color: #333;
+}
+
+/* Navigation links */
+.navbar a {
+  float: left;
+  font-size: 16px;
   color: white;
-  padding: 16px;
-  font-size: 25px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The subnavigation menu */
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+/* Subnav button */
+.subnav .subnavbtn {
+  font-size: 16px;
   border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
 }
 
-/* The container <div> - needed to position the dropup content */
-.dropup {
-  position: relative;
-  display: inline-block;
+/* Add a red background color to navigation links on hover */
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: orange;
 }
 
-/* Dropup content (Hidden by Default) */
-.dropup-content {
+/* Style the subnav content - positioned absolute */
+.subnav-content {
   display: none;
   position: absolute;
-  bottom: 50px;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  left: 0;
+  background-color: #333;
+  width: 100%;
   z-index: 1;
 }
 
-/* Links inside the dropup */
-.dropup-content a {
-  color: black;
-  /* padding: 12px 16px; */
+/* Style the subnav links */
+.subnav-content a {
+  float: left;
+  color: whitesmoke;
   text-decoration: none;
-  display: block;
 }
 
-/* Change color of dropup links on hover */
-.dropup-content a:hover {background-color: orange}
-
-/* Show the dropup menu on hover */
-.dropup:hover .dropup-content {
-  display: block;
+/* Add a grey background color on hover */
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
 }
 
-/* Change the background color of the dropup button when the dropup content is shown */
-.dropup:hover .dropbtn {
-  background-color: #000000;
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+  display: block;
 }
