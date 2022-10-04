@@ -14,7 +14,7 @@ function createCard(cardData) {
         </div>
     
         <div class="flags">
-            <img class="flag" src="${cardData.getCardFlag()}" width="20" height="12"></img>
+            <img class="flag" src="${cardData.flag_img_url}" width="20" height="12"></img>
             <!-- Placeholder -->
         </div>
     
@@ -27,8 +27,6 @@ function createCard(cardData) {
     )
   ) 
 }
-
-
 
 
 //Theme color pallet
@@ -55,17 +53,19 @@ $('#submit-user-name').on("click", function (event) {
   if (onlyLetters(username.val())) {
     cardData.name = username.val().toLowerCase()
     cardData.original_name = username.val()
-  } else { alert("invalid input, use letters only") }
 
-  cardData.card_color = $("#colorisVal").val() || "red";
-  setThemeColor(cardData.card_color)
+    cardData.card_color = $("#colorisVal").val() || "red";
+    setThemeColor(cardData.card_color)
+  
+    const progressBar = document.querySelector('.progress-bar')
+    progressBar.setAttribute('id', 'play-animation')
+    const disappear = document.getElementById('disappear')
+    disappear.style.display = 'none'
+  
+    nextPage(cardData);
 
-  const progressBar = document.querySelector('.progress-bar')
-  progressBar.setAttribute('id', 'play-animation')
-  const disappear = document.getElementById('disappear')
-  disappear.style.display = 'none'
+  } else { swal("Invalid text input, use letters only and do not leave blank.") }
 
-  nextPage(cardData);
 });
 
 // Util functions

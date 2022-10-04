@@ -77,9 +77,10 @@
                                 <span class="catBreed">cat breed</span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
-            </div> -->
+            </div>
 
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -101,6 +102,12 @@
                 }
 
                 catify(paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
+
+                let storedCards = getStored()
+                for ( const key in storedCards ) {
+                    createCard( storedCards[key] )
+                }
+
             })();
         </script>
 
