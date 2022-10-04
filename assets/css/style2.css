@@ -71,6 +71,11 @@ main {
 .cardImage1 {
   padding-top: 20px;
   padding-bottom: 20px;
+  transition: .4s;
+}
+
+.cardImage1:hover {
+  transform: scale(1.1);
 }
 
 .mySwiper {
@@ -176,12 +181,27 @@ section .card .image img {
 
 }
 
+#wiki-link {
+  text-decoration: none;
+}
+
+#wiki-link:hover {
+  color: whitesmoke;  
+}
+
 
 /* slider Button */
-
 .card-content:hover{
   cursor: pointer;
-  opacity: .8;
+  /* opacity: .8; */
+}
+
+.clickable-card {
+  transition: .3s;
+}
+
+.clickable-card:hover {
+  transform: scale(1.1);
 }
 
 .main-card-row, .list-group li {
@@ -240,6 +260,10 @@ a {
   background-color: orange;
 }
 
+.nav .nav-item:hover {
+  transform: scale(1.1);
+}
+
 /* Style the subnav content - positioned absolute */
 .subnav-content {
   visibility: hidden;
@@ -253,6 +277,7 @@ a {
 
 /* Style the subnav links */
 .subnav-content a {
+  padding: 0 1%;
   float: left;
   color: whitesmoke;
   text-decoration: none;
