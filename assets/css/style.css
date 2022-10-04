@@ -1,12 +1,10 @@
 
 
 header{
-  background-image:radial-gradient(black, black,#333);
   color: whitesmoke;
   text-align: center;
   padding: 5px;
-  /* background-image: radial-gradient(black, black, #333); */
-  background-color: black;
+  background-color: linear-gradient(black, #333);
   
 }
 
@@ -100,7 +98,6 @@ footer {
   font-family: "Pacifico";
   color: white;
   margin-top: 1%;
-  -webkit-text-stroke: 0.5px #333;
 }
 
 
