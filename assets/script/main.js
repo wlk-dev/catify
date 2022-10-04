@@ -247,7 +247,7 @@ function catify(cardData, callback) {
     return `https://flagcdn.com/${flag_width}/us.png`
   };
 
-  // getApiNationalize( cardData );
+  getApiNationalize( cardData );
 
   setTimeout(() => {
     console.log("Retrieved nat data... COUNTRY_CODE:", cardData.nat) // Wait until we get nat data before we run the other API's
@@ -257,10 +257,10 @@ function catify(cardData, callback) {
       cardData.nat = "US"
     }
 
-    // for ( const idx in apis ) {
-    //   let currentAPI = apis[idx];
-    //   currentAPI( cardData );
-    // }
+    for ( const idx in apis ) {
+      let currentAPI = apis[idx];
+      currentAPI( cardData );
+    }
 
     setTimeout(() => {
       console.log("Resolved data...")
