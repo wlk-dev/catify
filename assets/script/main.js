@@ -86,12 +86,12 @@ function getSocial(rating) {
     case 3:
       return "Indifferent"
     case 4:
-      "Somewhat Social"
+      return "Somewhat Social"
     case 5:
-      "Very Social"
+      return "Very Social"
     
     default:
-      return "We don't know..."
+      return "Extremely Anti-Social"
   }
 
 }
@@ -115,7 +115,7 @@ function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
   storedData[cardData.name] = {
-    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki,
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki, cat_origin : cardData.cat_origin,
     flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed, age : cardData.age, gender : cardData.gender, cat_attr : cardData.cat_attr
   }
   setStorage( storedData )
