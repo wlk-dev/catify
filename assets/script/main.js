@@ -68,13 +68,14 @@ $('#submit-user-name').on("click", function (event) {
 function populateMainCard(cardData, flag_url) {
   $(".main-card-row").css(`border`, `2px solid ${cardData.card_color}`).css(`border-radius`,  `1%` )
   $("#breed-img").attr("src", cardData.cat_img_url)
+  $("#breed-img-url").attr("href", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
   $("#human-name").text(`${cardData.original_name}, ${cardData.age} cat years old`)
   $("#gender").text(`Gender: ${cardData.gender === "male" ? "♂" : "♀"}`)
   $("#country-code").text(cardData.cat_origin)
   $("#flag-img").attr("src", flag_url)
-  $("#breed-attr").text( "Sociability : " + getSocial(cardData.cat_attr) )
-  $("#wiki-link").text(cardData.cat_wiki).attr("href", cardData.cat_wiki)
+  $("#breed-attr").text( "Sociability, " + getSocial(cardData.cat_attr) )
+  $("#wiki-link").attr("href", cardData.cat_wiki)
 }
 
 function getSocial(rating) {
@@ -86,12 +87,12 @@ function getSocial(rating) {
     case 3:
       return "Indifferent"
     case 4:
-      "Somewhat Social"
+      return "Somewhat Social"
     case 5:
-      "Very Social"
+      return "Very Social"
     
     default:
-      return "We don't know..."
+      return "Extremely Anti-Social"
   }
 
 }
@@ -115,7 +116,7 @@ function updateStorage(cardData) {
   let storedData = getStored() || {};
   console.log(`STORING DATA : key=${cardData.name}`)
   storedData[cardData.name] = {
-    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki,
+    name : cardData.name, original_name : cardData.original_name, cat_id : cardData.cat_id, card_color : cardData.card_color, cat_wiki : cardData.cat_wiki, cat_origin : cardData.cat_origin,
     flag_img_url : cardData.getCardFlag(), cat_img_url : cardData.cat_img_url, cat_breed : cardData.cat_breed, age : cardData.age, gender : cardData.gender, cat_attr : cardData.cat_attr
   }
   setStorage( storedData )
@@ -178,10 +179,10 @@ function getApiAgify(cardData) {
       return response.json();
     })
     .then(function (data) {
-      cardData.age = data.age
+      cardData.age = data.age;
     })
     .catch(function (error) {
-      cardData.age = 30
+      cardData.age = 30;
       console.log(error)
     })
 };

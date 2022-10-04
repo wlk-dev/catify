@@ -26,7 +26,7 @@ body {
 
 .txt{
   font-size: 120px;
-  font-family: "Pacifico";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color:white;
   background: black;
   width: 113%;
@@ -86,7 +86,7 @@ h1{
   background-color: gray;
   font-size: 30px;
   text-align: center;
-  font-family: "Pacifico";
+  font-family:  Verdana, Geneva, Tahoma, sans-serif;
   color: white;
 }
 
