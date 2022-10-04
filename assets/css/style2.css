@@ -11,7 +11,7 @@ header{
   background: rgb(0, 0, 0); 
   text-align: center;
   padding: 5px;
-  background-color: black;
+  background-color: #333;
   color: white;
   margin-bottom: 1%;
 }
@@ -22,10 +22,15 @@ header{
   
 }
 
+
+.flag {
+  box-shadow: 0 0 5px #333;
+}
+
 #top-card {
   width: 400px;
   padding: .5%;
-  border: 1px solid black;
+  border: 1px solid whitesmoke;
   margin: 0 auto;
 }
 
@@ -60,7 +65,7 @@ main {
 /* Add some padding inside the card container */
 .containerX, .cardY img {
   padding: 2px 16px;
-  box-shadow: 0 0 2px black;
+  box-shadow: 0 0 2px #333;
 }
 
 .cardImage1 {
@@ -73,15 +78,14 @@ main {
 }
 
 footer {
-  background-color: rgb(0, 0, 0);
+  background-color: #333;
   font-size: 25px;
   text-align: center;
   padding: 15px;
   font-family: "Pacifico";
   color: white;
   margin-top: 5%;
-  -webkit-text-stroke: 0.5px black;
-  z-index: 1000;
+  -webkit-text-stroke: 0.5px #333;
 }
 
 
@@ -133,7 +137,7 @@ section .card .image img {
   position: absolute;
   height: 55%;
   width: 100%;
-  background: black;
+  background: #333;
   border-radius: 20px 20px 0 0;
 }
 
@@ -180,6 +184,16 @@ section .card .image img {
   opacity: .8;
 }
 
+.main-card-row, .list-group li {
+  box-shadow: 0 0 10px #333;
+  background-color: #333;
+  color: whitesmoke;
+}
+
+.list-group li {
+  border: 1px solid whitesmoke;
+}
+
 a {
   text-align: center;
   margin: 5px;
@@ -188,7 +202,7 @@ a {
 
 /* Dropup Button */
 .dropbtn {
-  background-color: #000000;
+  background-color: #333;
   color: white;
   padding: 16px;
   font-size: 25px;

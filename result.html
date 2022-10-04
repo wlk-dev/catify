@@ -25,16 +25,16 @@
 
         <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link active" id="go-home" href="index.html">Home</a>
+                <a class="nav-link active" style="color: whitesmoke;" id="go-home" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" href="https://github.com/wlk-dev/catify">GitHub</a>
+                <a class="nav-link" style="color: whitesmoke;" target="_blank" href="https://github.com/wlk-dev/catify">GitHub</a>
             </li>
         </ul>
     </header>
 
     <div class="container">
-        <main class="row">
+        <main class="row main-card-row">
             <div class="col-12 col-lg-6 cardXcontainer">
                 <div class="cardX" id="top-card">
                     <h5 id="cat-breed"></h5>
@@ -49,9 +49,11 @@
                 <li class="list-group-item" id="gender">Gender</li>
                 <li class="list-group-item"><span id="country-code">Country</span><img src="" alt="Country Flag"
                         class="flag" id="flag-img" width="20" height="10"></img></li>
-
+                
                 <li class="list-group-item" id="breed-attr">Attributes</li>
                 <li class="list-group-item"><a href="" target="_blank" id="wiki-link"></a></li>
+                <li class="list-group-item"></li>
+
             </ul>
 
 
@@ -62,7 +64,7 @@
             <div class="swiper mySwiper container">
                 <div class="swiper-wrapper content">
 
-                    <div class="swiper-slide card">
+                    <!-- <div class="swiper-slide card">
                         <div class="card-content">
                             <div class="image">
                                 <img src="./assets/image/image1.jpg" alt="Avatar">
@@ -70,7 +72,6 @@
 
                             <div class="flags">
                                 <img class="flag" src="https://flagcdn.com/w20/gb.png" width="20" height="12"></img>
-                            
                             </div>
 
                             <div class="userNameCat">
@@ -78,8 +79,11 @@
                                 <span class="catBreed">cat breed</span>
                             </div>
                         </div>
-                    </div> 
-                    
+                    </div> -->
+
+                </div>
+            </div>
+
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -100,13 +104,17 @@
                 }
 
                 catify(paramsObj, populateMainCard); // change populateMainCard to a different function chain including this
-            })();
-        </script>
 
-        <script>
-            $("#go-home").on("click", (evt) => {
-                window.open(window.location.origin + "/projs/catify/", "_self");
-            })
+                let storedCards = getStored()
+                for ( const key in storedCards ) {
+                    createCard( storedCards[key] )
+                }
+
+                $(".clickable-card").on("click", (evt) => {
+                    catify( storedCards[$(evt.target).data("key")], populateMainCard )
+                })
+
+            })();
         </script>
 
         <!-- Swiper JS -->
