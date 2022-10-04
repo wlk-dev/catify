@@ -242,7 +242,8 @@ a {
 
 /* Style the subnav content - positioned absolute */
 .subnav-content {
-  display: none;
+  visibility: hidden;
+  transition: .3s;
   position: absolute;
   left: 0;
   background-color: #333;
@@ -265,5 +266,5 @@ a {
 
 /* When you move the mouse over the subnav container, open the subnav content */
 .subnav:hover .subnav-content {
-  display: block;
+  visibility: visible;
 }
