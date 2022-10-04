@@ -38,27 +38,6 @@ $('#submit-user-name').on("click", function (event) {
 });
 
 // Util functions
-function createCard (cardData) { // you need to ask dong about this one, because idk how to dynamically add to the carousel
-  $(".mySwiper").append(
-    $("<div class='swiper-slide card'>").append(
-
-      $("<div class='image'>").append(
-       $(`<img alt="Avatar">`).attr("src", cardData.cat_img_url) 
-      ),
-      
-      $("<div class='flags'>").append(
-        $(`<img class='flag' width="20" height="12">`).attr("src", cardData.flag_img_url)
-      ),
-
-      $("<div class='userNameCat'>").append(
-        $("<span class='userName'>").text(cardData.original_name),
-        $("<span class='catBreed'>").text(cardData.cat_breed)
-      )
-
-    )
-  )
-}
-
 function populateMainCard(cardData) {
   $("#breed-img").attr("src", cardData.cat_img_url)
   $("#cat-breed").text(cardData.cat_breed)
